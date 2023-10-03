@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Posts</title>
+</head>
+<body>
+  <div class="container">
+    <%- include("partials/menu.ejs") %>
+    <div class="content posts-container">
+      <% if (posts.length) { %>
+        <h2>Posts</h2>
+        <div class="posts">
+          <% for (post of posts) { %>
+            <div class="post-preview" data-post-id="<%= post.postId %>">
+              <a href="/posts/<%= post.postId %>">
+                <h3><%= post.title %></h3>
+              </a>
+              <div class="text-preview" data-post-body="<%= post.body %>"></div>
+              <p class="posted-at">Posted <%= formatDate(post.createdAt) %></p>
+            </div>
+          <% } %>
+        </div>
+      <% } else { %>
+        <h3 class="no-posts">No Posts Available</h3>
+      <% } %>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/socket.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    generatePreviews()
+  </script>
+</body>
+</html>

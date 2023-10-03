@@ -1,0 +1,16 @@
+<div class="content post-form-container">
+  <h2><%= edit? "Edit" : "Create" %> a Post</h2>
+  <form class="post-form" data-body="<%= post.body %>">
+    <input type="text" placeholder="Enter a Title" value="<%= post.title %>">
+    <div>
+      <div class="editor"></div>
+    </div>
+    <p class="remaining">250 Characters Required</p>
+    <% if (edit) { %>
+      <button onclick="editPost(event)" data-post-id="<%= post.postId %>">Save</button>
+    <% } else { %>
+      <button onclick="post(event)">Post</button>
+    <% }%>
+    <p class="msg"></p>
+  </form>
+</div>

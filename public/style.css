@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  width: calc(100% - 80px);
+  padding: 40px;
+}
+
+nav {
+  width: 70%;
+  height: 70px;
+  display: grid;
+  grid-template-columns: repeat(4, auto) 1fr;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+  background-color: #000;
+  padding: 0 15%;
+}
+
+nav.logged-out {
+  grid-template-columns: auto 1fr;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+}
+
+nav a:last-of-type {
+  justify-self: end;
+}
+
+/* Login */
+.content.auth {
+  min-height: calc(100vh - 150px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  width: 300px;
+  background-color: #fefefe;
+  border: solid 1px #cdcdcd;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 20px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.loading {
+  width: 100%;
+  height: 7px;
+  background-color: #1a73e8;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  animation: loading 2s linear infinite;
+  display: none;
+}
+
+@keyframes loading {
+  100% {
+    left: 100%;
+  }
+}
+
+.login h2 {
+  align-self: center;
+}
+
+.login .input-container, .change-password .input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login input {
+  padding: 10px 7px;
+  border: none;
+  outline: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.password {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  outline: 1px solid #ccc;
+  padding-right: 10px;
+}
+
+.password input {
+  outline: none;
+  flex: 1;
+  padding-right: 0;
+}
+
+.password svg {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  fill: #808080;
+}
+
+.login > button, .change-password > button, .post-form > button {
+  width: fit-content;
+  border: 0;
+  border-radius: 3px;
+  background-color: #1a73e8;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 20px;
+  align-self: flex-end;
+}
+
+.login > button:hover, .change-password > button:hover, .post-form > button:hover {
+  background-color: #075cca;
+}
+
+.login .msg, .post-form .msg, .change-password .msg {
+  font-size: 14px;
+  color: #8c0c0c;
+  height: 22px;
+}
+
+.login .msg {
+  margin-top: -10px;
+}
+
+/* Create Post */
+.post-form-container {
+  width: 60%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post-form-container h2 {
+  margin-bottom: 15px;
+}
+
+.post-form {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 3px;
+}
+
+.post-form > input {
+  padding: 10px 7px;
+  border: none;
+  outline: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.post-form > input:focus {
+  outline: 1px solid #1a73e8 !important;
+}
+
+.remaining {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Text Editor and Preview */
+.ql-editor {
+  font-size: 15px !important;
+  min-height: 200px !important;
+  resize: vertical !important;
+  padding: 10px !important;
+}
+
+.ql-code-block:hover > svg, button.ql-code-block.ql-active {
+  fill: #06c !important;
+}
+
+.ql-editor:focus {
+  outline: 1px solid #1a73e8 !important;
+}
+
+.ql-syntax, code {
+  color: #000 !important;
+  font-size: 13px !important;
+  font-family: monospace !important;
+  background-color: #f6f6f6 !important;
+}
+
+.ql-syntax {
+  white-space: pre !important;
+  overflow: auto !important;
+}
+
+.ql-editor img {
+  width: auto !important;
+  height: auto !important
+}
+
+.preview {
+  width: 80%;
+  max-width: 700px;
+  margin: 10px auto 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.preview .posted {
+  font-size: 14px;
+  font-weight: 600;
+  align-self: flex-end;
+}
+
+.preview .ql-toolbar {
+  display: none !important;
+}
+
+.editor.post {
+  background-color: #fff;
+  border: none !important;
+  padding: 5px;
+  grid-column: 1 / 3;
+}
+
+.editor.post .ql-editor {
+  min-height: auto !important;
+  resize: none !important;
+}
+
+.editor.post .ql-editor:focus {
+  outline: none !important;
+}
+
+.post img {
+  cursor: pointer;
+}
+
+/* Posts Page */
+.posts-container {
+  width: 60%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.posts-container h2 {
+  margin-bottom: 15px;
+}
+
+.no-posts {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.post-preview {
+  width: calc(100% - 30px);
+  background-color: #fff;
+  outline: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.post-preview a {
+  align-self: flex-start;
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.post-preview a:hover {
+  color: #075cca;
+}
+
+.post-preview .text-preview {
+  font-size: 13px;
+  word-wrap: break-word;
+}
+
+.post-preview .posted-at {
+  font-size: 12px;
+  font-weight: 700;
+  align-self: flex-end;
+}
+
+/* Dashboard */
+.dashboard-posts {
+  background-color: #fff;
+  outline: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.dashboard-post {
+  all: unset;
+  border-bottom: 1px solid #ccc;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard-post:last-of-type {
+  border: none;
+}
+
+.post-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.post-actions .action {
+  all: unset;
+  font-size: 13px;
+  color: #000;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.post-actions .action:hover {
+  color: #00000094;
+}
+
+/* Settings Page */
+.change-password {
+  width: 60%;
+  max-width: 700px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.change-password input:not([type="checkbox"]) {
+  padding: 10px 7px;
+  border: none;
+  outline: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.change-password input[type="checkbox"] {
+  scale: 1.5;
+  cursor: pointer;
+}
+
+.change-password > div:last-of-type {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+}

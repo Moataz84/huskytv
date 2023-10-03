@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Settings</title>
+</head>
+<body>
+  <div class="container">
+    <%- include("partials/menu.ejs") %>
+    <div class="content">
+
+      <form class="change-password">
+        <h2>Change Password</h2>
+        <div class="input-container">
+          <label>Current Password</label>
+          <input type="password" placeholder="Current Password" onfocus="focusInput(event)" onblur="blurInput(event)">
+        </div>
+        <div class="input-container">
+          <label>New Password</label>
+          <input type="password" placeholder="New Password" onfocus="focusInput(event)" onblur="blurInput(event)">
+        </div>
+        <div class="input-container">
+          <label>Repeat Password</label>
+          <input type="password" placeholder="Repeat Password" onfocus="focusInput(event)" onblur="blurInput(event)">
+        </div>
+        <div>
+          <label>Show Passwords</label>
+          <input type="checkbox" onchange="showPassword()">
+        </div>
+        <button onclick="changePassword(event)">Save</button>
+        <p class="msg"></p>
+      </form>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>
