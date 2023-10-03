@@ -28,18 +28,12 @@ function setPostData() {
   quill.container.firstChild.innerHTML = body
 }
 
-async function confirmDelete(e) {
+function confirmDelete(e) {
   const post = e.target
   const postId = post.getAttribute("data-post-id")
   const title = post.getAttribute("data-post-title")
   const confirmed = confirm(`Are you sure you want to delete "${title}"? This action is irreversible.`)
   if (!confirmed) return
-  await fetch("/api/delete", {
-    method: "POST",
-    body: JSON.stringify({postId}),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
+  socket.emit("post-delete", postId)
   window.location.reload()
 }

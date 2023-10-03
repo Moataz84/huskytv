@@ -33,6 +33,8 @@ app.use("/", mainRoutes)
 io.on("connection", socket => {
   socket.on("post-create", async data => {
     const postId = uuid.v4().replace(/-/g, "")
+    io.emit("post-created", {postId, ...data})
+
     let { title, body, createdAt } = data
     const images = new Set([...body.matchAll(/<img[^>]+src="([^">]+)"/g)].map(match => match[1]))
   
@@ -57,7 +59,6 @@ io.on("connection", socket => {
     }).save()
     
     socket.emit("post-id", postId)
-    io.emit("post-created", {postId, ...data})
   })
 
   socket.on("post-update", async data => {
@@ -88,6 +89,14 @@ io.on("connection", socket => {
       const unusedIds = result.filter(image => !usedImages.includes(image.url)).map(image => image.versionInfo.id)
       if (unusedIds.length) await imagekit.bulkDeleteFiles(unusedIds)
     })
+  })
+
+  socket.on("post-delete", async postId => {
+    await Posts.findOneAndDelete({postId})
+    io.emit("post-deleted", postId)
+    try {
+      await imagekit.deleteFolder(`signage/${postId}`)
+    } catch {}
   })
 })
 

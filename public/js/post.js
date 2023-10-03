@@ -90,7 +90,7 @@ quill.on("text-change", () => {
   remaining.innerText = ""
 })
 
-async function post(e) {
+function post(e) {
   e.preventDefault()
 
   const title = document.querySelector(".post-form > input").value
@@ -112,7 +112,7 @@ async function post(e) {
   socket.on("post-id", postId => window.location.href = `/posts/${postId}`)
 }
 
-async function editPost(e) {
+function editPost(e) {
   e.preventDefault()
   const postId = e.target.getAttribute("data-post-id")
   const title = document.querySelector(".post-form > input").value

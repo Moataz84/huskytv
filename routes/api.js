@@ -2,10 +2,7 @@ const express = require("express")
 const router = express.Router()
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const uuid = require("uuid")
 const Users = require("../Models/Users")
-const Posts = require("../Models/Posts")
-const imagekit = require("../utils/imagekit")
 
 router.post("/login", async (req, res) => {
   const user = await Users.findOne({username: req.body.username})
@@ -26,16 +23,6 @@ router.post("/login", async (req, res) => {
 router.post("/logout", (req, res) => {
   res.clearCookie("JWT-Token")
   res.end()
-})
-
-router.post("/create-post", async (req, res) => {
-
-  res.send({postId})
-})
-
-router.post("/delete", async (req, res) => {
-  await Posts.findOneAndDelete({postId: req.body.postId})
-  res.send("done")
 })
 
 router.post("/change-password", async (req, res) => {
