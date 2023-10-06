@@ -2,9 +2,8 @@ const mongoose = require("mongoose")
 
 const schema = new mongoose.Schema({
     postId: String,
-    title: String,
     body: String,
-    createdAt: Number
+    approved: Boolean
   })
   
 const Posts = mongoose.model("posts", schema)
