@@ -1,7 +1,7 @@
 function updateDate(unix) {
   const d = new Date(unix)
-  const day = d.toLocaleString("en-us", {weekday:"long"})
-  const month = d.toLocaleString("en-us", {month:"long"})
+  const day = d.toLocaleString("en-US", {weekday: "long"})
+  const month = d.toLocaleString("en-US", {month: "long"})
   const date = d.getDate()
   const year = d.getFullYear()
   const time = d.toLocaleString("en-US", {hour: "numeric", minute: "numeric", hour12: true})
@@ -10,7 +10,9 @@ function updateDate(unix) {
   document.querySelector(".time").innerText = time
 }
 
-function setTimeOfDay(hours) {
+function setTimeOfDay(unix) {
+  const d = new Date(unix)
+  const hours = d.getHours()
   if (hours >= 12) {
     document.querySelector(".greeting").innerText = "Good Afternoon"
     return
@@ -25,16 +27,16 @@ nextMinute.setSeconds(0)
 
 let unix = now.getTime()
 updateDate(unix)
-setTimeOfDay(now.getHours())
+setTimeOfDay(unix)
 
 setTimeout(() => {
   unix += nextMinute - now
   updateDate(unix)
-  setTimeOfDay(now.getHours())
+  setTimeOfDay(unix)
 
   setInterval(() => {
     unix+=60000
     updateDate(unix)
-    setTimeOfDay(now.getHours())
+    setTimeOfDay(unix)
   }, 60000)
 }, nextMinute - now)
