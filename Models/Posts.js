@@ -2,7 +2,8 @@ const mongoose = require("mongoose")
 
 const schema = new mongoose.Schema({
     postId: String,
-    body: String,
+    photo: String,
+    caption: String,
     approved: Boolean
   })
   

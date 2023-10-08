@@ -12,18 +12,26 @@
       <div class="photo-slider">
         <div class="banner">
           <img src="imgs/logo.png">
+          <div class="greeting"></div>
         </div>
+
         <div class="slider"></div>
         <div class="caption"></div>
       </div>
-      <div class="side-pannel"></div>
+      <div class="side-pannel">
+        <div class="date-container">
+          <b>Today is</b>
+          <div>
+            <span class="date"></span>
+            <span class="time"></span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/socket.js"></script>
   <script src="js/main.js"></script>
-  <script>
-    
-  </script>
+  <script src="js/time.js"></script>
 </body>
 </html>
