@@ -30,6 +30,7 @@ setTimeOfDay(now.getHours())
 setTimeout(() => {
   unix += nextMinute - now
   updateDate(unix)
+  setTimeOfDay(now.getHours())
 
   setInterval(() => {
     unix+=60000
