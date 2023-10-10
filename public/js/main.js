@@ -39,10 +39,15 @@ function confirmDelete(e) {
 }
 
 function scaleText() {
-  const resizeObserver = new ResizeObserver(() => {
-    const width = document.querySelector(".date-bubble").getBoundingClientRect().width
-    const factor = width / 240
-    document.querySelectorAll(".date-bubble *").forEach(elem => {
+  document.querySelectorAll(".layout *").forEach(elem => {
+    const originalSize = window.getComputedStyle(elem).getPropertyValue("font-size")
+    elem.setAttribute("data-size", originalSize)
+  })
+
+  const resizeObserver = new ResizeObserver(e => {
+    const width = e[0].contentRect.width
+    const factor = width / 1100
+    document.querySelectorAll(".layout *").forEach(elem => {
       const fontSize = parseInt(elem.getAttribute("data-size")) * factor
       elem.style.fontSize = `${fontSize}px`
     })
