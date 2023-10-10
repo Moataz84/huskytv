@@ -4,20 +4,20 @@ function updateDate(unix) {
   const month = d.toLocaleString("en-US", {month: "long"})
   const date = d.getDate()
   const year = d.getFullYear()
-  const time = d.toLocaleString("en-US", {hour: "numeric", minute: "numeric", hour12: true})
+  const time = d.toLocaleString("en-US", {hour: "numeric", minute: "numeric", hour12: true}).split(" ")
   
-  document.querySelector(".date").innerHTML = `<p>${day}</p> ${month} ${date} ${year}`
-  document.querySelector(".time").innerText = time
+  document.querySelector(".date").innerHTML = `<span data-size="22">${day}</span> ${month} ${date} ${year}`
+  document.querySelector(".time").innerHTML = `<span data-size="35">${time[0]}</span> ${time[1]}`
 }
 
 function setTimeOfDay(unix) {
   const d = new Date(unix)
   const hours = d.getHours()
   if (hours >= 12) {
-    document.querySelector(".greeting").innerText = "Good Afternoon"
+    document.querySelector(".greeting").innerText = "Good Afternoon!"
     return
   } 
-  document.querySelector(".greeting").innerText = "Good Morning"
+  document.querySelector(".greeting").innerText = "Good Morning!"
 }
 
 const now = new Date()

@@ -37,3 +37,16 @@ function confirmDelete(e) {
   socket.emit("post-delete", postId)
   window.location.reload()
 }
+
+function scaleText() {
+  const resizeObserver = new ResizeObserver(() => {
+    const width = document.querySelector(".date-bubble").getBoundingClientRect().width
+    const factor = width / 240
+    document.querySelectorAll(".date-bubble *").forEach(elem => {
+      const fontSize = parseInt(elem.getAttribute("data-size")) * factor
+      elem.style.fontSize = `${fontSize}px`
+    })
+  })
+  
+  resizeObserver.observe(document.querySelector(".layout"))
+}
