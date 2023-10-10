@@ -37,21 +37,3 @@ function confirmDelete(e) {
   socket.emit("post-delete", postId)
   window.location.reload()
 }
-
-function scaleText() {
-  document.querySelectorAll(".layout *").forEach(elem => {
-    const originalSize = window.getComputedStyle(elem).getPropertyValue("font-size")
-    elem.setAttribute("data-size", originalSize)
-  })
-
-  const resizeObserver = new ResizeObserver(e => {
-    const width = e[0].contentRect.width
-    const factor = width / 1100
-    document.querySelectorAll(".layout *").forEach(elem => {
-      const fontSize = parseInt(elem.getAttribute("data-size")) * factor
-      elem.style.fontSize = `${fontSize}px`
-    })
-  })
-  
-  resizeObserver.observe(document.querySelector(".layout"))
-}

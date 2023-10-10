@@ -6,8 +6,11 @@ function updateDate(unix) {
   const year = d.getFullYear()
   const time = d.toLocaleString("en-US", {hour: "numeric", minute: "numeric", hour12: true}).split(" ")
   
-  document.querySelector(".date").innerHTML = `<span data-size="22">${day}</span> ${month} ${date} ${year}`
-  document.querySelector(".time").innerHTML = `<span data-size="35">${time[0]}</span> ${time[1]}`
+  document.querySelector(".date > span").innerText = day
+  document.querySelector(".date > span:last-of-type").innerText = `${month} ${date} ${year}`
+
+  document.querySelector(".time > span").innerText = time[0]
+  document.querySelector(".time > span:last-of-type").innerText = time[1]
 }
 
 function setTimeOfDay(unix) {

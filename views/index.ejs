@@ -9,6 +9,7 @@
 <body>
   <div class="container">
     <div class="layout">
+      
       <div class="photo-slider">
         <div class="banner">
           <img src="imgs/logo.png">
@@ -18,23 +19,39 @@
         <div class="slider"></div>
         <div class="caption"></div>
       </div>
+
       <div class="side-pannel">
         <div class="date-container">
           <h2 data-size="24">TODAY IS</h2>
           <div class="date-bubble">
-            <p class="date" data-size="16"></p>
-            <p class="time" data-size="25"></p>
+            <p class="date"><span></span><span></span></p>
+            <p class="time"><span></span><span></span></p>
+          </div>
+        </div>
+
+        <div class="announcments"></div>
+
+        <div class="qr-codes-container">
+          <div class="qr-codes">
+            <div class="qr-code">
+              <h3>Guidance</h3>
+              <img src="/imgs/qr-codes/guidance.png" alt="">
+            </div>
+            <div class="qr-code">
+              <h3>Instagram</h3>
+              <img src="/imgs/qr-codes/instagram.png" alt="">
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/socket.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/scale.js"></script>
   <script src="js/time.js"></script>
-  <script>
-    scaleText()
-  </script>
+  <script src="js/qr-codes.js"></script>
 </body>
 </html>

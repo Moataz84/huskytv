@@ -49,18 +49,18 @@ nav a:last-of-type {
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-columns: 75% 25%;
+  grid-template-columns: 78% 22%;
 }
 
 .photo-slider {
-  background-color: #075cca;
+  background-color: #2A2D34;
   position: relative;
   border-right: 5px solid #4284b3;
 }
 
 .banner {
   width: calc(100% - 100px);
-  height: 60px;
+  height: calc(11vh - 20px);
   background-color: #22252c;
   padding: 10px 50px;
   display: flex;
@@ -80,7 +80,7 @@ nav a:last-of-type {
 
 .side-pannel {
   display: grid;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: auto 1fr auto;
   background-color: #22252c;
 }
 
@@ -89,34 +89,75 @@ nav a:last-of-type {
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  padding: 25px 15px;
+  padding: 45px 7% 30px;
   border-bottom: 2px solid #2a2d34;
   color: #fff;
 }
 
 .side-pannel .date-bubble {
   align-self: normal;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #4284b3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 7px;
   text-align: center;
+  padding: 7px;
+  box-shadow: 0 0 13px 2px #4284b3;
 }
 
-.side-pannel .date > span {
+.side-pannel .date {
+  font-size: 16px;
+}
+
+.side-pannel .date > span:first-of-type {
   font-size: 22px;
   font-weight: 700;
+  margin-right: 7px;
 }
 
 .side-pannel .time {
-  font-size: 25px;
+  font-size: 35px;
 }
 
-.side-pannel .time > span {
-  font-size: 35px;
+.side-pannel .time > span:first-of-type  {
+  font-size: 45px;
   font-weight: 700;
+  margin-right: 10px;
+}
+
+.side-pannel .qr-codes-container {
+  overflow: hidden;
+  border-top: 2px solid #2a2d34;
+  padding-top: 20px;
+}
+
+.side-pannel .qr-codes {
+  width: 200%;
+  display: flex;
+  position: relative;
+}
+
+.side-pannel .qr-code {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  color: #fff;
+}
+
+.side-pannel .qr-code img {
+  width: 100%;
+}
+
+.side-pannel .qr-code h3 {
+  font-size: 20px;
+}
+
+@keyframes move {
+  0% { right: 0%; }
+  100% { right: 100%; }
 }
 
 .caption {
@@ -125,7 +166,7 @@ nav a:last-of-type {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  background-color: #cf3245;
+  background-color: #22252c;
 }
 
 /* Login */
