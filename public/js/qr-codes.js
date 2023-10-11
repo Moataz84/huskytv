@@ -29,4 +29,5 @@ setInterval(() => {
       )
     clearTimeout(timeout)
   }, 1000)
+  scaleFontSize(".qr-codes-wrapper", 280)
 }, 5000)

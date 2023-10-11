@@ -17,10 +17,11 @@ document.querySelectorAll(".layout *").forEach(elem => {
 })
 
 const resizeObserver = new ResizeObserver(() => {
+  // Default Page Size 1269
   scaleFontSize(".banner", 985)
   scaleFontSize(".date-container", 280)
   scaleFontSize(".date-bubble", 240)
-  scaleFontSize(".qr-codes-container", 280)
+  scaleFontSize(".qr-codes-wrapper", 280)
 })
 
 resizeObserver.observe(document.querySelector(".layout"))
