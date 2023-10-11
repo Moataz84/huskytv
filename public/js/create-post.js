@@ -1,4 +1,5 @@
-function getLength() {
+
+/*function getLength() {
   const tempElement = document.createElement("div")
   tempElement.innerHTML = quill.container.innerHTML
   return tempElement.textContent.length
@@ -39,34 +40,7 @@ function image() {
   }
 }
 
-const quill = new Quill(".editor", {
-  theme: "snow",
-  formats: [
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "link",
-    "image",
-    "code",
-    "code-block",
-    "list",
-  ],
-  modules: {
-    toolbar: {
-      container: [
-        [{"header": [1, 2, false]}, "bold", "italic", "underline", "strike"],
-        ["blockquote", "link", "image", "code", "code-block"],
-        [{"list": "ordered"}, {"list": "bullet"}]
-      ],
-      handlers: {
-        image
-      }
-    }
-  }
-});
+
 
 [...document.querySelectorAll(".ql-editor, .post-form > input")].
 forEach(element => element.addEventListener("focus", () => document.querySelector(".msg").innerText = ""))
@@ -132,4 +106,84 @@ function editPost(e) {
 
   socket.emit("post-update", {postId, title, body})
   window.location.href = `/posts/${postId}`
+}*/
+
+const quill = new Quill(".editor", {
+  theme: "snow",
+  formats: [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote"
+  ],
+  modules: {
+    toolbar: {
+      container: [
+        [{"header": [1, 2, false]}, "bold", "italic", "underline", "strike", "blockquote"]
+      ]
+    }
+  }
+})
+
+const getLength = () => {
+  const tempElement = document.createElement("div")
+  tempElement.innerHTML = quill.container.innerHTML
+  return tempElement.textContent.length
+}
+
+const clearInput = () => document.querySelector(".post-form .msg").innerText = ""
+
+const imageUploaded = e => {
+  const files = e.target.files
+  const text = document.querySelector(".post-form p")
+  if (files.length === 0) text.innerText = "Upload Image"
+  else text.innerText = files[0].name
+}
+
+const dragOverHandeler = e => {
+  e.preventDefault()
+  if (e.dataTransfer.items[0].kind === "file") 
+    document.querySelector(".post-form label").classList.add("dragging")
+}
+
+const dragLeaveHandeler = e => {
+  e.preventDefault()
+  document.querySelector(".post-form label").classList.remove("dragging")
+}
+
+const dropHandler = e => {
+  e.preventDefault()
+  clearInput(e)
+  const item = e.dataTransfer.items[0]
+  if (item.kind === "file") {
+    dragLeaveHandeler(e)
+    const file = item.getAsFile()
+    const list = new DataTransfer()
+    list.items.add(file)
+    const parent = document.querySelector(".post-form")
+    parent.querySelector("input").files = list.files
+    parent.querySelector("p").innerText = file.name
+  }
+}
+
+function post(e) {
+  e.preventDefault()
+
+  const msg = document.querySelector(".msg")
+  const input = document.querySelector("#upload-image")
+  input.disabled = true
+
+  const file = input.files
+  if (!file.length === 0 || getLength() < 250) {
+    input.disabled = false
+    return msg.innerText = "Both fields are required"
+  }
+  
+  const type = file["0"]?.type
+  if (!type?.includes("image")) {
+    input.disabled = false
+    return msg.innerText = "Please select an image"
+  }
 }
