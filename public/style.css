@@ -78,6 +78,15 @@ nav a:last-of-type {
   font-size: 20px;
 }
 
+.caption {
+  width: 45%;
+  height: 20%;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: #22252c;
+}
+
 .side-pannel {
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -162,15 +171,6 @@ nav a:last-of-type {
 @keyframes move {
   0% { right: 0%; }
   100% { right: 100%; }
-}
-
-.caption {
-  width: 45%;
-  height: 20%;
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background-color: #22252c;
 }
 
 /* Login */

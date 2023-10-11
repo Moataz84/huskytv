@@ -16,7 +16,7 @@ setInterval(() => {
   const nextImage = codes[next] != undefined? codes[next].image : codes[0].image
   const nextTitle = codes[next] != undefined? codes[next].name : codes[0].name
     
-  qrCodes.style.animation = "move 1s linear forwards"
+  qrCodes.style.animation = "move 1s ease-in-out forwards"
   const timeout = setTimeout(() => {
     qrCodes.style.animation = ""
     qrCodes.children[0].remove()
