@@ -5,19 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="//cdn.quilljs.com/1.3.6/quill.snow.css">
   <link rel="stylesheet" href="../style.css">
-  <title>Post - <%= post.title %></title>
+  <title>Post</title>
 </head>
 <body>
   <div class="container">
     <%- include("partials/menu.ejs") %>
     <div class="content">
-      <div class="preview">
-        <h2><%= post.title %></h2>
-        <p class="posted">Posted on 
-          <%= new Date(parseInt(post.createdAt)).toLocaleDateString("en-US", {month: "short", day: "numeric", year: "numeric"}) %>
-        </p>
+      <div class="content-preview">
+        <img src="<%- post.photo %>">
         <div class="editor post">
-          <%- post.body %>
+          <%- post.caption %>
         </div>
       </div>
     </div>

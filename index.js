@@ -9,6 +9,7 @@ const imagekit = require("./utils/imagekit")
 const mainRoutes = require("./routes/main")
 const postsRoutes = require("./routes/posts")
 const apiRoutes = require("./routes/api")
+const { checkLoggedIn } = require("./utils/middleware")
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config()
 
@@ -35,27 +36,28 @@ io.on("connection", socket => {
     const postId = uuid.v4().replace(/-/g, "")
     io.emit("post-created", {postId, ...data})
 
-    let { title, body, createdAt } = data
-    const images = new Set([...body.matchAll(/<img[^>]+src="([^">]+)"/g)].map(match => match[1]))
+    const { photo, caption } = data
+
+    const imageUrl = await new Promise(resolve => {
+      imagekit.upload({
+        file: photo,
+        fileName: uuid.v4(),
+        folder: `signage/${postId}`
+      }, (e, result) => resolve(result.url))
+    })
   
-    const imageUrls = await Promise.all(
-      [...images].map(image => {
-        return new Promise(resolve => {
-          imagekit.upload({
-            file: image,
-            fileName: uuid.v4(),
-            folder: `signage/${postId}`
-          }, (e, result) => resolve({image, url: result.url}))
-        })
-      })
-    )
-    imageUrls.forEach(img => body = body.replaceAll(img.image, img.url))
-  
+    const req = {
+      cookies: {
+        "JWT-Token": socket.handshake.headers.cookie?.replace("JWT-Token=", "")
+      }
+    }
+    const loggedIn = checkLoggedIn(req)
+
     await new Posts({
       postId,
-      title,
-      body,
-      createdAt
+      photo: imageUrl,
+      caption: caption,
+      approved: loggedIn
     }).save()
     
     socket.emit("post-id", postId)

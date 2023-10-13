@@ -57,7 +57,7 @@ async function login(e) {
 
   loading.style.display = "none"
   if (data.msg === "success") {
-    return window.location.href = "/"
+    return window.location.href = "/dashboard"
   }
   msg.innerText = data.msg
 }

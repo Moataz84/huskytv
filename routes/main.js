@@ -5,7 +5,7 @@ const { validateJWT, checkLoggedIn } = require("../utils/middleware")
 const formatDate = require("../utils/formatDate")
 
 router.get("/", validateJWT, async (req, res) => {
-	const posts = await Posts.find()
+	const posts = await Posts.find({approved: true})
 	res.render("index", {posts, loggedIn: checkLoggedIn(req), formatDate})
 })
 

@@ -32,7 +32,7 @@ nav {
 }
 
 nav.logged-out {
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto auto 1fr;
 }
 
 nav a {
@@ -343,138 +343,35 @@ nav a:last-of-type {
 .ql-editor:focus {
   outline: 1px solid #1a73e8 !important;
 }
-/*
-
-.post-form > input {
-  padding: 10px 7px;
-  border: none;
-  outline: 1px solid #ccc;
-  font-size: 15px;
-}
-
-.post-form > input:focus {
-  outline: 1px solid #1a73e8 !important;
-}
 
 .remaining {
   font-size: 14px;
   font-weight: 600;
-}*/
-
-/* Text Editor and Preview 
-
-
-.ql-syntax, code {
-  color: #000 !important;
-  font-size: 13px !important;
-  font-family: monospace !important;
-  background-color: #f6f6f6 !important;
 }
 
-.ql-syntax {
-  white-space: pre !important;
-  overflow: auto !important;
+.post-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.ql-editor img {
-  width: auto !important;
-  height: auto !important
-}
-
-.preview {
+.content-preview {
   width: 80%;
   max-width: 700px;
   margin: 10px auto 0 auto;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto;
+  display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.preview .posted {
-  font-size: 14px;
-  font-weight: 600;
-  align-self: flex-end;
-}
-
-.preview .ql-toolbar {
+.content-preview .ql-toolbar {
   display: none !important;
 }
 
-.editor.post {
+.content-preview .editor {
   background-color: #fff;
   border: none !important;
   padding: 5px;
-  grid-column: 1 / 3;
-}
-
-.editor.post .ql-editor {
-  min-height: auto !important;
-  resize: none !important;
-}
-
-.editor.post .ql-editor:focus {
-  outline: none !important;
-}
-
-.post img {
-  cursor: pointer;
-}
-*/
-/* Posts Page */
-.posts-container {
-  width: 60%;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.posts-container h2 {
-  margin-bottom: 15px;
-}
-
-.no-posts {
-  width: fit-content;
-  margin: 0 auto;
-}
-
-.posts {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-}
-
-.post-preview {
-  width: calc(100% - 30px);
-  background-color: #fff;
-  outline: 1px solid #ccc;
-  border-radius: 3px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.post-preview a {
-  align-self: flex-start;
-  color: #1a73e8;
-  text-decoration: none;
-}
-
-.post-preview a:hover {
-  color: #075cca;
-}
-
-.post-preview .text-preview {
-  font-size: 13px;
-  word-wrap: break-word;
-}
-
-.post-preview .posted-at {
-  font-size: 12px;
-  font-weight: 700;
-  align-self: flex-end;
 }
 
 /* Dashboard */
