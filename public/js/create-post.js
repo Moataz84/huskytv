@@ -95,9 +95,10 @@ function post(e) {
     input.disabled = false
     return msg.innerText = "Caption can not exceed 250 characters"
   }
-
+  
   const photo = document.querySelector(".post-preview img").src
   const caption = document.querySelector(".ql-editor").innerHTML
   socket.emit("post-create", {photo, caption})
+  input.disabled = false
   socket.on("post-id", postId => window.location.href = `/posts/${postId}`)
 }

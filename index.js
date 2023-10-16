@@ -34,8 +34,6 @@ app.use("/", mainRoutes)
 io.on("connection", socket => {
   socket.on("post-create", async data => {
     const postId = uuid.v4().replace(/-/g, "")
-    io.emit("post-created", {postId, ...data})
-
     const { photo, caption } = data
 
     const imageUrl = await new Promise(resolve => {
@@ -53,13 +51,14 @@ io.on("connection", socket => {
     }
     const loggedIn = checkLoggedIn(req)
 
-    await new Posts({
+    const post = await new Posts({
       postId,
       photo: imageUrl,
       caption: caption,
       approved: loggedIn
     }).save()
-    
+
+    if (loggedIn) io.emit("post-created", {post})
     socket.emit("post-id", postId)
   })
 

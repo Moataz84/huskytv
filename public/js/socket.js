@@ -1,5 +1,7 @@
 const socket = io("/")
 
+
+/*
 function generatePreview(body, parent) {
   const tempElement = document.createElement("div")
   tempElement.innerHTML = body
@@ -67,4 +69,4 @@ socket.on("post-deleted", postId => {
     }
   }
   if (pathname === `/posts/${postId}`) window.location.href = "/"
-})
+})*/
