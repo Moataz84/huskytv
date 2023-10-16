@@ -6,7 +6,7 @@ const formatDate = require("../utils/formatDate")
 
 router.get("/", validateJWT, async (req, res) => {
 	const posts = await Posts.find({approved: true})
-	res.render("index", {posts, loggedIn: checkLoggedIn(req), formatDate})
+	res.render("index", {posts: JSON.stringify(posts), loggedIn: checkLoggedIn(req)})
 })
 
 router.get("/login", validateJWT, (req, res) => {

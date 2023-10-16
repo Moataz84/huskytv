@@ -12,22 +12,6 @@ function getPost() {
   })
 }
 
-function generatePreviews() {
-  const posts = document.querySelectorAll(".post-preview");
-  [...posts].forEach(post => {
-    const textPreview = post.querySelector(".text-preview")
-    const tempElement = document.createElement("div")
-    tempElement.innerHTML = textPreview.getAttribute("data-post-body")
-    textPreview.textContent = `${tempElement.textContent.substring(0, 200)} ...`
-    textPreview.removeAttribute("data-post-body")
-  })
-}
-
-function setPostData() {
-  const body = document.querySelector(".post-form").getAttribute("data-body")
-  quill.container.firstChild.innerHTML = body
-}
-
 function confirmDelete(e) {
   const post = e.target
   const postId = post.getAttribute("data-post-id")

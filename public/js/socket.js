@@ -1,5 +1,41 @@
 const socket = io("/")
 
+const slider = document.querySelector(".slider")
+
+let posts = JSON.parse(document.querySelector(".photo-slider").getAttribute("data-posts"))
+
+slider.insertAdjacentHTML(
+  "beforeend",
+  `<div class="slide">
+    <img src="${posts[0].photo}">
+  </div>
+  <div class="slide">
+    <img src="${posts[1].photo}">
+  </div>`
+)
+
+/*setInterval(() => {
+  const current = qrCodes.children[1].querySelector("img").getAttribute("src")
+  const next = posts.findIndex(post => post.photo === current) + 1
+  const nextImage = posts[next] != undefined? posts[next].photo : posts[0].photo
+    
+  slider.style.animation = "move 1s ease-in-out forwards"
+  const timeout = setTimeout(() => {
+    slider.style.animation = ""
+    slider.children[0].remove()
+    slider.insertAdjacentHTML(
+      "beforeend", 
+      `<div class="slide">
+        <img src="${nextImage}">
+      </div>`
+      )
+    clearTimeout(timeout)
+  }, 1000)
+}, 5000)
+*/
+socket.on("post-created", data => {
+
+})
 
 /*
 function generatePreview(body, parent) {

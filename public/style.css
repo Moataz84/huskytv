@@ -78,6 +78,25 @@ nav a:last-of-type {
   font-size: 20px;
 }
 
+.photo-slider .slider-container {
+
+  overflow: hidden;
+}
+
+.photo-slider .slider-container .slider {
+  width: 200%;
+  display: flex;
+  position: relative;
+}
+
+.photo-slider .slider-container .slide {
+  width: 100%;
+
+}
+
+.photo-slider .slider-container .slide img {
+}
+
 .caption {
   width: 45%;
   height: 20%;
