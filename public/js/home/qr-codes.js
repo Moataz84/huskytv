@@ -18,12 +18,13 @@ setInterval(() => {
     
   qrCodes.style.animation = "move 1s ease-in-out forwards"
   const timeout = setTimeout(() => {
+    const fontSize = window.getComputedStyle(document.querySelector(".qr-code h3")).getPropertyValue("font-size")
     qrCodes.style.animation = ""
     qrCodes.children[0].remove()
     qrCodes.insertAdjacentHTML(
       "beforeend", 
       `<div class="qr-code">
-        <h3 data-size="20px">${nextTitle}</h3>
+        <h3 style="font-size: ${fontSize};">${nextTitle}</h3>
         <img src="${nextImage}">
       </div>`
       )

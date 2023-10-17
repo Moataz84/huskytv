@@ -91,10 +91,16 @@ nav a:last-of-type {
 
 .photo-slider .slider-container .slide {
   width: 100%;
-
+  display: flex;
 }
 
 .photo-slider .slider-container .slide img {
+  width: 100%;
+  height: calc(100vh - 11vh);
+}
+
+.caption-editor .ql-toolbar {
+  display: none;
 }
 
 .caption {
@@ -104,6 +110,15 @@ nav a:last-of-type {
   bottom: 20px;
   right: 20px;
   background-color: #22252c;
+  border-radius: 10px;
+  box-shadow: 0 0 13px 2px #4284b3;
+  color: #fff;
+  border: none !important;
+}
+
+.caption .ql-editor {
+  min-height: auto !important;
+  border: none !important;
 }
 
 .side-pannel {
