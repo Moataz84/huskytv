@@ -23,7 +23,7 @@ if (window.location.pathname === "/") {
     const current = slider.children[1].querySelector("img").getAttribute("src")
     const next = posts.findIndex(post => post.photo === current) + 1
     const nextImage = posts[next] != undefined? posts[next].photo : posts[0].photo
-    const nextCaption = posts[next] != undefined? posts[next].caption : posts[0].caption
+    const nextCaption = posts[next - 1] != undefined? posts[next - 1].caption : posts[0].caption
 
     slider.style.animation = "move 1.5s ease-in-out forwards"
     const timeout = setTimeout(() => {
