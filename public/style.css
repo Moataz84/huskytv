@@ -413,10 +413,10 @@ nav a:last-of-type {
   background-color: #fff;
   outline: 1px solid #ccc;
   border-radius: 5px;
+  margin-top: 20px;
 }
 
 .dashboard-post {
-  all: unset;
   border-bottom: 1px solid #ccc;
   padding: 15px;
   display: flex;
@@ -425,6 +425,11 @@ nav a:last-of-type {
 
 .dashboard-post:last-of-type {
   border: none;
+}
+
+.dashboard-post > a {
+  color: #1a73e8;
+  text-decoration: none;
 }
 
 .post-actions {

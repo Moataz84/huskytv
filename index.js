@@ -58,8 +58,18 @@ io.on("connection", socket => {
       approved: loggedIn
     }).save()
 
-    if (loggedIn) io.emit("post-created", {post})
+    if (loggedIn) io.emit("post-created", post)
     socket.emit("post-id", postId)
+  })
+
+  socket.on("post-approve", async postId => {
+    let posts = await Posts.find()
+    posts = posts.map(post => {
+      if (post.postId === postId) post.approved = true
+      return post
+    }).filter(post => post.approved)
+    io.emit("post-approved", posts)
+    await Posts.findOneAndUpdate({postId}, {$set: {approved: true}}, {new: true})
   })
 
   socket.on("post-update", async data => {
@@ -93,8 +103,8 @@ io.on("connection", socket => {
   })
 
   socket.on("post-delete", async postId => {
-    await Posts.findOneAndDelete({postId})
     io.emit("post-deleted", postId)
+    await Posts.findOneAndDelete({postId})
     try {
       await imagekit.deleteFolder(`signage/${postId}`)
     } catch {}

@@ -1,6 +1,6 @@
 <nav class="<%= !loggedIn? 'logged-out' : '' %>">
-  <a href="/" target="_blank">Home</a>
-  <a href="/post">Create Post</a>
+  <a href="/">Home</a>
+  <a href="/view" target="_blank">View</a>
   <% if (loggedIn) { %>
     <a href="/dashboard">Dashboard</a>
     <a href="/settings">Settings</a>

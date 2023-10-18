@@ -13,11 +13,17 @@ function getPost() {
 }
 
 function confirmDelete(e) {
-  const post = e.target
-  const postId = post.getAttribute("data-post-id")
-  const title = post.getAttribute("data-post-title")
-  const confirmed = confirm(`Are you sure you want to delete "${title}"? This action is irreversible.`)
+  const postId = e.target.getAttribute("data-post-id")
+  const confirmed = confirm("Are you sure you want to delete this post? This action is irreversible.")
   if (!confirmed) return
   socket.emit("post-delete", postId)
+  window.location.reload()
+}
+
+function approvePost(e) {
+  const postId = e.target.getAttribute("data-post-id")
+  const confirmed = confirm("Are you sure you want to approve this post?")
+  if (!confirmed) return
+  socket.emit("post-approve", postId)
   window.location.reload()
 }

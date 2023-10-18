@@ -2,19 +2,18 @@ const express = require("express")
 const router = express.Router()
 const Posts = require("../Models/Posts")
 const { validateJWT, checkLoggedIn } = require("../utils/middleware")
-const formatDate = require("../utils/formatDate")
 
-router.get("/", validateJWT, async (req, res) => {
+router.get("/", validateJWT, (req, res) => {
+	res.render("create-post", {loggedIn: checkLoggedIn(req)})
+})
+
+router.get("/view", validateJWT, async (req, res) => {
 	const posts = await Posts.find({approved: true})
-	res.render("index", {posts: JSON.stringify(posts), loggedIn: checkLoggedIn(req)})
+	res.render("view", {posts: JSON.stringify(posts), loggedIn: checkLoggedIn(req)})
 })
 
 router.get("/login", validateJWT, (req, res) => {
 	res.render("login", {loggedIn: checkLoggedIn(req)})
-})
-
-router.get("/post", validateJWT, (req, res) => {
-	res.render("create-post", {loggedIn: checkLoggedIn(req)})
 })
 
 router.get("/dashboard", validateJWT, async (req, res) => {
