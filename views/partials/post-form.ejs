@@ -1,6 +1,6 @@
 <div class="content post-form-container">
   <h2><%= edit? "Edit Post" : "Create a Post" %></h2>
-  <form class="post-form">
+  <form class="post-form" data-caption="<%= post.caption %>">
     <input type="file" accept="image/*" name="image" id="upload-image" onchange="imageUploaded(event)" onfocus="clearInput(event)">
     <label for="upload-image" ondrop="dropHandler(event)" ondragover="dragOverHandeler(event)" ondragleave="dragLeaveHandeler(event)">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">

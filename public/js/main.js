@@ -13,8 +13,8 @@ function getPost() {
 }
 
 function setPostData() {
-  const body = document.querySelector(".post-form").getAttribute("data-body")
-  quill.container.firstChild.innerHTML = body
+  const caption = document.querySelector(".post-form").getAttribute("data-caption")
+  quill.container.firstChild.innerHTML = caption
 }
 
 function confirmDelete(e) {
