@@ -12,6 +12,11 @@ function getPost() {
   })
 }
 
+function setPostData() {
+  const body = document.querySelector(".post-form").getAttribute("data-body")
+  quill.container.firstChild.innerHTML = body
+}
+
 function confirmDelete(e) {
   const postId = e.target.getAttribute("data-post-id")
   const confirmed = confirm("Are you sure you want to delete this post? This action is irreversible.")

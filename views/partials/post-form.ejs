@@ -1,5 +1,5 @@
 <div class="content post-form-container">
-  <h2>Create a Post</h2>
+  <h2><%= edit? "Edit Post" : "Create a Post" %></h2>
   <form class="post-form">
     <input type="file" accept="image/*" name="image" id="upload-image" onchange="imageUploaded(event)" onfocus="clearInput(event)">
     <label for="upload-image" ondrop="dropHandler(event)" ondragover="dragOverHandeler(event)" ondragleave="dragLeaveHandeler(event)">
@@ -13,11 +13,15 @@
       <div class="editor"></div>
     </div>
     <p class="remaining">250 Characters Remaining</p>
-    <button onclick="post(event)">Post</button>
+    <% if (edit) { %>
+      <button onclick="editPost(event)">Save</button>
+    <% } else { %>
+      <button onclick="post(event)">Post</button>
+    <% } %>
     <p class="msg"></p>
     <div class="post-preview">
       <p style="font-weight: 600;">Preview</p>
-      <img src="">
+      <img src="<%= edit? post.photo : '' %>">
       <div></div>
     </div>
   </form>

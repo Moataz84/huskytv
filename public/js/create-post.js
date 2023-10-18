@@ -102,3 +102,7 @@ function post(e) {
   input.disabled = false
   socket.on("post-id", postId => window.location.href = `/posts/${postId}`)
 }
+
+function editPost(e) {
+  
+}
