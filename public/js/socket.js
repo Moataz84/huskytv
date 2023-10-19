@@ -1,6 +1,11 @@
 const socket = io("/")
 
-
+socket.on("post-updated", data => {
+  const isPost = window.location.pathname.replace("/posts/", "") === data.postId
+  if (isPost) {
+    
+  }
+})
 
 /*
 function generatePreview(body, parent) {
