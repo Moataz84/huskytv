@@ -73,33 +73,20 @@ io.on("connection", socket => {
   })
 
   socket.on("post-update", async data => {
-    io.emit("post-updated", data)
-    let { postId, title, body } = data
-    const pattern = /<img[^>]+src="([^">]+)"/g
-    const images = new Set([...body.matchAll(pattern)].map(match => match[1]))
-  
-    const imageUrls = await Promise.all(
-      [...images].map(image => {
-        if (image.includes("https://ik.imagekit.io/pk4i4h8ea/")) return
-        return new Promise(resolve => {
-          imagekit.upload({
-            file: image,
-            fileName: uuid.v4(),
-            folder: `signage/${postId}`
-          }, (e, result) => resolve({image, url: result.url}))
-        })
+    let { postId, photo, caption } = data
+
+    if (photo.startsWith("data:image")) {
+      await new Promise(resolve => imagekit.deleteFolder(`signage/${postId}`, () => resolve("done")))
+      photo = await new Promise(resolve => {
+        imagekit.upload({
+          file: photo,
+          fileName: uuid.v4(),
+          folder: `signage/${postId}`
+        }, (e, result) => resolve(result.url))
       })
-    )
-    imageUrls.filter(img => img !== undefined).forEach(img => body = body.replaceAll(img.image, img.url))
-    await Posts.findOneAndUpdate({postId: postId}, {$set: {body, title}})
-  
-    const usedImages = [...body.matchAll(pattern)].map(match => match[1])
-    imagekit.listFiles({
-      path: `signage/${postId}`
-    }, async (e, result) => {
-      const unusedIds = result.filter(image => !usedImages.includes(image.url)).map(image => image.versionInfo.id)
-      if (unusedIds.length) await imagekit.bulkDeleteFiles(unusedIds)
-    })
+    }
+    const post = await Posts.findOneAndUpdate({postId}, {$set: {caption, photo}}, {new: true})
+    io.emit("post-updated", post)
   })
 
   socket.on("post-delete", async postId => {

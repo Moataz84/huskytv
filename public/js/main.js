@@ -15,6 +15,26 @@ function getPost() {
 function setPostData() {
   const caption = document.querySelector(".post-form").getAttribute("data-caption")
   quill.container.firstChild.innerHTML = caption
+
+  const src = document.querySelector("img").src
+  const img = document.createElement("img")
+  img.crossOrigin = "Anonymous"
+  img.src = src
+  img.onload = async () => {
+    const canvas = document.createElement("canvas")
+    canvas.height = img.naturalHeight
+    canvas.width = img.naturalWidth
+    const context = canvas.getContext("2d")
+    context.drawImage(img, 0, 0, canvas.width, canvas.height)
+    const dataURL = context.canvas.toDataURL("image/jpeg")
+    const res = await fetch(dataURL)
+    const data = await res.blob()
+    const file = new File([data], "file.jpeg")
+    const dataTransfer = new DataTransfer()
+    dataTransfer.items.add(file)
+    document.querySelector("#upload-image").files = dataTransfer.files
+    document.querySelector("label > p").innerText = "Image.jpg"
+  }  
 }
 
 function confirmDelete(e) {

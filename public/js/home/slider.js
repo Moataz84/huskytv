@@ -49,3 +49,9 @@ socket.on("post-approved", data => {
 socket.on("post-deleted", postId => {
   posts = posts.filter(post => post.postId !== postId)
 })
+
+socket.on("post-updated", data => {
+  const post = posts.find(post => post.postId === data.postId)
+  post.photo = data.photo
+  post.caption = data.caption
+})

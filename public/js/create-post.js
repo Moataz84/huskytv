@@ -85,8 +85,8 @@ function post(e) {
   const input = document.querySelector("#upload-image")
   input.disabled = true
 
-  const file = input.files
-  if (!file.length === 0 || getLength() === 0) {
+  const files = input.files
+  if (!files.length || !getLength()) {
     input.disabled = false
     return msg.innerText = "Both fields are required"
   }
@@ -104,5 +104,26 @@ function post(e) {
 }
 
 function editPost(e) {
-  
+  e.preventDefault()
+
+  const msg = document.querySelector(".msg")
+  const input = document.querySelector("#upload-image")
+  input.disabled = true
+
+  const files = input.files
+  if (!files.length || !getLength()) {
+    input.disabled = false
+    return msg.innerText = "Both fields are required"
+  }
+
+  if (getLength() >= 250) {
+    input.disabled = false
+    return msg.innerText = "Caption can not exceed 250 characters"
+  }
+
+  const postId = window.location.pathname.replace("/posts/", "").replace("/edit", "")
+  const photo = document.querySelector(".post-preview img").src
+  const caption = document.querySelector(".ql-editor").innerHTML
+  socket.emit("post-update", {postId, photo, caption})
+  window.location.href = `/posts/${postId}`
 }
