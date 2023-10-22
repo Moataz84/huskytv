@@ -21,7 +21,7 @@
     <p class="msg"></p>
     <div class="post-preview">
       <p style="font-weight: 600;">Preview</p>
-      <img src="<%= edit? post.photo : '' %>">
+      <img src="<%= edit? post.photo : '' %>" data-photo-id="<%= edit? post.photoId : '' %>">
       <div></div>
     </div>
   </form>

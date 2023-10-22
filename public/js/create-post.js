@@ -122,8 +122,10 @@ function editPost(e) {
   }
 
   const postId = window.location.pathname.replace("/posts/", "").replace("/edit", "")
-  const photo = document.querySelector(".post-preview img").src
+  const img = document.querySelector(".post-preview img")
+  const photo = img.src
+  const photoId = img.getAttribute("data-photo-id")
   const caption = document.querySelector(".ql-editor").innerHTML
-  socket.emit("post-update", {postId, photo, caption})
+  socket.emit("post-update", {postId, photo, photoId, caption})
   window.location.href = `/posts/${postId}`
 }

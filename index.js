@@ -36,24 +36,26 @@ io.on("connection", socket => {
     const postId = uuid.v4().replace(/-/g, "")
     const { photo, caption } = data
 
-    const imageUrl = await new Promise(resolve => {
+    const { pictureUrl, photoId } = await new Promise(resolve => {
       imagekit.upload({
         file: photo,
         fileName: uuid.v4(),
-        folder: `signage/${postId}`
-      }, (e, result) => resolve(result.url))
+        folder: "signage"
+      }, (e, result) => resolve({pictureUrl: result.url, photoId: result.versionInfo.id}))
     })
   
     const req = {
       cookies: {
-        "JWT-Token": socket.handshake.headers.cookie?.replace("JWT-Token=", "")
+        "JWT-Token": socket.handshake.headers.cookie?.split(";")?.
+        find(cookie => cookie.includes("JWT-Token"))?.replace("JWT-Token=", "")?.replace(" ", "")
       }
     }
     const loggedIn = checkLoggedIn(req)
 
     const post = await new Posts({
       postId,
-      photo: imageUrl,
+      photo: pictureUrl,
+      photoId,
       caption: caption,
       approved: loggedIn
     }).save()
@@ -73,28 +75,28 @@ io.on("connection", socket => {
   })
 
   socket.on("post-update", async data => {
-    let { postId, photo, caption } = data
+    let { postId, photo, photoId, caption } = data
 
     if (photo.startsWith("data:image")) {
-      await new Promise(resolve => imagekit.deleteFolder(`signage/${postId}`, () => resolve("done")))
-      photo = await new Promise(resolve => {
+      imagekit.deleteFile(photoId)
+      const result = await new Promise(resolve => {
         imagekit.upload({
           file: photo,
           fileName: uuid.v4(),
-          folder: `signage/${postId}`
-        }, (e, result) => resolve(result.url))
+          folder: "signage"
+        }, (e, result) => resolve({photo: result.url, photoId: result.versionInfo.id}))
       })
+      photo = result.photo
+      photoId = result.photoId
     }
-    const post = await Posts.findOneAndUpdate({postId}, {$set: {caption, photo}}, {new: true})
+    const post = await Posts.findOneAndUpdate({postId}, {$set: {caption, photo, photoId}}, {new: true})
     io.emit("post-updated", post)
   })
 
   socket.on("post-delete", async postId => {
+    const post = await Posts.findOneAndDelete({postId})
+    imagekit.deleteFile(post.photoId)
     io.emit("post-deleted", postId)
-    await Posts.findOneAndDelete({postId})
-    try {
-      await imagekit.deleteFolder(`signage/${postId}`)
-    } catch {}
   })
 })
 
