@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 if (process.env.NODE_ENV !== "production") require("dotenv").config()
 
-const protected = ["/dashboard", /*"/post",*/ "/settings", "/:id/edit"]
+const protected = ["/dashboard", "/announcements", "/settings", "/:id/edit"]
 function validateJWT(req, res, next) {
   const cookie = req.cookies["JWT-Token"]
   if (!cookie && protected.includes(req.route.path)) return res.redirect("/login")

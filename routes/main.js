@@ -21,6 +21,10 @@ router.get("/dashboard", validateJWT, async (req, res) => {
 	res.render("dashboard", {loggedIn: checkLoggedIn(req), posts})
 })
 
+router.get("/announcements", validateJWT, (req, res) => {
+	res.render("announcement", {loggedIn: checkLoggedIn(req)})
+})
+
 router.get("/settings", validateJWT, (req, res) => {
 	res.render("settings", {loggedIn: checkLoggedIn(req)})
 })
