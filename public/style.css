@@ -23,7 +23,7 @@ nav {
   width: 70%;
   height: 70px;
   display: grid;
-  grid-template-columns: repeat(5, auto) 1fr;
+  grid-template-columns: repeat(4, auto) 1fr;
   justify-content: start;
   align-items: center;
   gap: 20px;
