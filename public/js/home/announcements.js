@@ -1,6 +1,6 @@
 const announcementsSlider = document.querySelector(".announcements")
 
-const announcements = JSON.parse(announcementsSlider.getAttribute("data-announcements"))
+let announcements = JSON.parse(announcementsSlider.getAttribute("data-announcements"))
 
 announcementsSlider.removeAttribute("data-posts")
 announcementsSlider.insertAdjacentHTML(
@@ -36,3 +36,9 @@ setInterval(() => {
     clearTimeout(timeout)
   }, 1000)
 }, 5000)
+
+setInterval(async () => {
+  const res = await fetch("/api/announcements", {method: "POST"})
+  const data = await res.json()
+  announcements = data.announcements
+}, (60 * 60 * 1000))

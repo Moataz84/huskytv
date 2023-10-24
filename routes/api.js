@@ -3,6 +3,7 @@ const router = express.Router()
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const Users = require("../Models/Users")
+const getAnnouncements = require("../utils/announcements")
 
 router.post("/login", async (req, res) => {
   const user = await Users.findOne({username: req.body.username})
@@ -32,6 +33,11 @@ router.post("/change-password", async (req, res) => {
   const password = await bcrypt.hash(req.body.newPassword, 10)
   await Users.findOneAndUpdate({username: "admin"}, {$set: {password}})
   res.send({msg: "success"})
+})
+
+router.post("/announcements", async (req, res) => {
+	const announcements = await getAnnouncements()
+  res.send({announcements})
 })
 
 module.exports = router
