@@ -173,14 +173,8 @@ nav a:last-of-type {
   margin-right: 10px;
 }
 
-.side-pannel .announcements {
-  padding: 20px 7%;
-}
-
-.side-pannel .announcements iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
+.side-pannel .announcements-container {
+  padding: 20px calc(7% - 10px);
 }
 
 .side-pannel .qr-codes-container {
@@ -188,23 +182,27 @@ nav a:last-of-type {
   padding: 20px 7%;
 }
 
-.side-pannel .qr-codes-wrapper {
+.side-pannel .qr-codes-wrapper, .announcements-wrapper {
   overflow: hidden;
 }
 
-.side-pannel .qr-codes {
+.side-pannel .qr-codes, .announcements {
   width: 200%;
   display: flex;
   position: relative;
 }
 
-.side-pannel .qr-code {
+.side-pannel .qr-code, .announcement {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
   color: #fff;
+}
+
+.announcement {
+  padding: 0 10px;
 }
 
 .side-pannel .qr-code img {

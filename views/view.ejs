@@ -11,14 +11,14 @@
   <div class="container">
     <div class="layout">
       
-      <div class="photo-slider" data-posts="<%= posts %>">
+      <div class="photo-slider">
         <div class="banner">
           <img src="imgs/logo.png">
           <div class="greeting"></div>
         </div>
 
         <div class="slider-container">
-          <div class="slider">
+          <div class="slider" data-posts="<%= posts %>">
           </div>
         </div>
         <div class="caption-editor">
@@ -35,8 +35,12 @@
           </div>
         </div>
 
-        <div class="announcements">
-          <iframe src="https://508.commons.hwdsb.on.ca/presentation/announcements/"></iframe>
+        <div class="announcements-container">
+          <div class="announcements-wrapper">
+            <div class="announcements" data-announcements="<%= announcements %>">
+              
+            </div>
+          </div>
         </div>
 
         <div class="qr-codes-container">
@@ -60,9 +64,10 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/main.js"></script>
   <script src="js/home/slider.js"></script>
-  <script src="js/home/scale.js"></script>
   <script src="js/home/time.js"></script>
+  <script src="js/home/announcements.js"></script>
   <script src="js/home/qr-codes.js"></script>
+  <script src="js/home/scale.js"></script>
   <script>
     getPost()
     document.querySelector(".ql-editor").contentEditable = false

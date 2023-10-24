@@ -1,11 +1,9 @@
-const sliderContainer = document.querySelector(".photo-slider")
 const slider = document.querySelector(".slider")
 const caption = document.querySelector(".caption")
 
-let posts = JSON.parse(sliderContainer.getAttribute("data-posts"))
-sliderContainer.removeAttribute("data-posts")
+let posts = JSON.parse(slider.getAttribute("data-posts"))
+slider.removeAttribute("data-posts")
 
-console.log(posts);
 caption.innerHTML = posts[0].caption
 slider.insertAdjacentHTML(
   "beforeend",
