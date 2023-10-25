@@ -118,6 +118,7 @@ nav a:last-of-type {
   box-shadow: 0 0 13px 2px #4284b3;
   color: #fff;
   border: none !important;
+  font-size: 17px;
 }
 
 .caption .ql-editor {
@@ -175,11 +176,13 @@ nav a:last-of-type {
 
 .side-pannel .announcements-container {
   padding: 20px calc(7% - 10px);
+  overflow: hidden;
 }
 
 .side-pannel .qr-codes-container {
   border-top: 2px solid #2a2d34;
   padding: 20px 7%;
+  align-self: end;
 }
 
 .side-pannel .qr-codes-wrapper, .announcements-wrapper {
@@ -203,6 +206,10 @@ nav a:last-of-type {
 
 .announcement {
   padding: 0 10px;
+}
+
+.announcement h2 {
+  text-align: center;
 }
 
 .side-pannel .qr-code img {
