@@ -35,7 +35,6 @@ setInterval(() => {
       )
     clearTimeout(timeout)
   }, 1000)
-  scaleFontSize(".announcements-wrapper", 320)
 }, 5000)
 
 setInterval(async () => {

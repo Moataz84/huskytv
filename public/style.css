@@ -75,7 +75,7 @@ nav a:last-of-type {
 .banner .greeting {
   align-self: center;
   color: #fff;
-  font-size: 20px;
+  font-size: 1.6vw;
 }
 
 .photo-slider .slider-container {
@@ -118,12 +118,23 @@ nav a:last-of-type {
   box-shadow: 0 0 13px 2px #4284b3;
   color: #fff;
   border: none !important;
-  font-size: 17px;
 }
 
 .caption .ql-editor {
   min-height: auto !important;
   border: none !important;
+}
+
+.caption .ql-editor h1 {
+  font-size: 2.5vw !important;
+}
+
+.caption .ql-editor h2 {
+  font-size: 1.9vw !important;
+}
+
+.caption .ql-editor p {
+  font-size: 1.25vw !important;
 }
 
 .side-pannel {
@@ -155,21 +166,21 @@ nav a:last-of-type {
 }
 
 .side-pannel .date {
-  font-size: 16px;
+  font-size: 1.25vw;
 }
 
 .side-pannel .date > span:first-of-type {
-  font-size: 22px;
+  font-size: 1.75vw;
   font-weight: 700;
   margin-right: 7px;
 }
 
 .side-pannel .time {
-  font-size: 35px;
+  font-size: 2.75vw;
 }
 
 .side-pannel .time > span:first-of-type  {
-  font-size: 45px;
+  font-size: 3.5vw;
   font-weight: 700;
   margin-right: 10px;
 }
@@ -209,7 +220,12 @@ nav a:last-of-type {
 }
 
 .announcement h2 {
+  font-size: 1.7vw;
   text-align: center;
+}
+
+.announcement p {
+  font-size: 1.1vw;
 }
 
 .side-pannel .qr-code img {
@@ -218,7 +234,7 @@ nav a:last-of-type {
 }
 
 .side-pannel .qr-code h3 {
-  font-size: 20px;
+  font-size: 1.6vw;
 }
 
 @keyframes move {
