@@ -1,0 +1,22 @@
+name: Deploy to server
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          username: ${{ secrets.SERVER_USERNAME }}
+          host: ${{ secrets.SERVER_IP }}
+          password: ${{ secrets.SERVER_SSH_PASSWORD }}
+          port: 22
+          script: |
+            cd ~/sites/ics3u-project
+            git pull origin main
+            npm install
+            pm2 restart index
