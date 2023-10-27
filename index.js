@@ -17,7 +17,7 @@ const app = express()
 const server = http.createServer(app)
 const io = require("socket.io")(server)
 
-const port = process.env.PORT || 5000
+const port = 5000
 const URI = process.env.DB_URI
 
 app.set("view engine", "ejs")
