@@ -14,7 +14,6 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           host: ${{ secrets.SERVER_IP }}
           password: ${{ secrets.SERVER_SSH_PASSWORD }}
-          port: 22
           script: |
             cd ~/sites/ics3u-project
             git pull origin main
