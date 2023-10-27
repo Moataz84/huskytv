@@ -11,8 +11,8 @@ jobs:
       - name: Deploy to server
         uses: matheusvanzan/sshpass-action@v2
         with: 
-          host: ${{ secrets.SERVER_IP }}
           port: 22
+          host: ${{ secrets.SERVER_IP }}
           user: ${{ secrets.SERVER_USERNAME }}
           pass: ${{ secrets.SERVER_SSH_PASSWORD }}
           run: |
