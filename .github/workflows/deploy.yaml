@@ -15,9 +15,8 @@ jobs:
           port: 22
           user: ${{ secrets.SERVER_USERNAME }}
           pass: ${{ secrets.SERVER_SSH_PASSWORD }}
-        run: |
-          cd ~/Desktop/ics3u-project
-          git pull origin main
-          npm install
-          pm2 restart index
-        shell: bash
+          run: |
+            cd ~/Desktop/ics3u-project
+            git pull origin main
+            npm install
+            pm2 restart index
