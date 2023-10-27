@@ -9,8 +9,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Deploy to server
+        uses: matheusvanzan/sshpass-action@v2
+        with: 
+          host: ${{ secrets.SERVER_IP }}
+          port: 22
+          user: ${{ secrets.SERVER_USERNAME }}
+          pass: ${{ secrets.SERVER_SSH_PASSWORD }}
         run: |
-          sshpass -p ${{ secrets.SERVER_SSH_PASSWORD }} ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}
           cd ~/Desktop/ics3u-project
           git pull origin main
           npm install
