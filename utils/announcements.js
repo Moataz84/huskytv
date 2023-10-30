@@ -5,14 +5,20 @@ async function getAnnouncements() {
   const data = [] 
   const res = await axios.get("https://508.commons.hwdsb.on.ca/presentation/announcements/feed/")
   const $ = cheerio.load(res.data, null, false)
-  const items = $("item")
+  const items = $("item")  
 
-  for (const item of items) {
-    const title = $("title", item).text()
-    let content = $("p", item).text()
-    if (!content?.length) content = $("h1", item).html()
+  items.each((index, item) => {
+    const title = $(item).find("title").text()
+    let content = ""
+    const paragraphs = $(item).find("p")
+    paragraphs.each((index, paragraph) => {
+      const html = $(paragraph).html()
+      if (html) content = content + html
+    })
+    if (!content?.length) content = $(item).find("h1").html()
     data.push({title, content})
-  }
+  })
+  
   return data.filter((v, i) => i > 0).map((item, index) => ({id: index, ...item}))
 }
 
