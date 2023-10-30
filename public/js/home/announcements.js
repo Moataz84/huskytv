@@ -35,7 +35,7 @@ setInterval(() => {
       )
     clearTimeout(timeout)
   }, 1000)
-}, 5000)
+}, 10000)
 
 setInterval(async () => {
   const res = await fetch("/api/announcements", {method: "POST"})
