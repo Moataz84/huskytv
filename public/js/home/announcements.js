@@ -1,8 +1,10 @@
 const announcementsSlider = document.querySelector(".announcements")
+const slideNumber = document.querySelector(".slide-number")
 
 let announcements = JSON.parse(announcementsSlider.getAttribute("data-announcements"))
 
 announcementsSlider.removeAttribute("data-posts")
+slideNumber.innerText = `1/${announcements.length}`
 announcementsSlider.insertAdjacentHTML(
   "beforeend",
   `<div class="announcement" data-id="${announcements[0].id}">
@@ -21,6 +23,7 @@ setInterval(() => {
   const nextId = announcements[next] != undefined? announcements[next].id : announcements[0].id
   const nextTitle = announcements[next] != undefined? announcements[next].title : announcements[0].title
   const nextContent = announcements[next] != undefined? announcements[next].content : announcements[0].content
+  slideNumber.innerText = `${parseInt(current) + 1}/${announcements.length}`
 
   announcementsSlider.style.animation = "move 1s ease-in-out forwards"
   const timeout = setTimeout(() => {

@@ -222,6 +222,14 @@ nav a:last-of-type {
   font-size: 1.1vw;
 }
 
+.announcements-container .slide-number {
+  font-size: 0.9vw;
+  color: #fff;
+  text-align: right;
+  padding-right: 10px;
+  margin-bottom: 10px;
+}
+
 .qr-codes-container {
   border-top: 2px solid #2a2d34;
   padding: 20px 7%;
