@@ -9,7 +9,7 @@ async function getAnnouncements() {
 
   for (const item of items) {
     const title = $("title", item).text()
-    let content = $("p", item).html()
+    let content = $("p", item).text()
     if (!content?.length) content = $("h1", item).html()
     data.push({title, content})
   }
