@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== "production") require("dotenv").config()
 const app = express()
 const server = http.createServer(app)
 const io = require("socket.io")(server, {
-  maxHttpBufferSize: 1e9
+  maxHttpBufferSize: 1e11
 })
 
 const port = 5000
