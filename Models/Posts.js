@@ -5,7 +5,12 @@ const schema = new mongoose.Schema({
     photo: String,
     photoId: String,
     caption: String,
-    approved: Boolean
+    approved: Boolean,
+    timestamp: {
+      type: Date,
+      default: Date.now,
+      expires: 604800
+    }
   })
   
 const Posts = mongoose.model("posts", schema)

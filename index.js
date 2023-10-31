@@ -58,7 +58,7 @@ io.on("connection", socket => {
       postId,
       photo: pictureUrl,
       photoId,
-      caption: caption,
+      caption,
       approved: loggedIn
     }).save()
 
@@ -67,13 +67,12 @@ io.on("connection", socket => {
   })
 
   socket.on("post-approve", async postId => {
-    let posts = await Posts.find()
+    let posts = await Promise.all([Posts.find(), Posts.findOneAndUpdate({postId}, {$set: {approved: true}}, {new: true})])
     posts = posts.map(post => {
       if (post.postId === postId) post.approved = true
       return post
     }).filter(post => post.approved)
     io.emit("post-approved", posts)
-    await Posts.findOneAndUpdate({postId}, {$set: {approved: true}}, {new: true})
   })
 
   socket.on("post-update", async data => {
