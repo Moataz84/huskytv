@@ -438,7 +438,7 @@ nav a:last-of-type {
   padding: 10px !important;
 }
 
-.ql-editor[contenteditable="false"] {
+.post-form .ql-editor[contenteditable="false"] {
   background-color: #f9f9f9;
 }
 
