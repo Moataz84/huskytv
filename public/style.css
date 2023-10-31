@@ -415,6 +415,10 @@ nav a:last-of-type {
   border: 1px solid #1a73e8;
 }
 
+.post-form > button:disabled, .post-form > button:disabled:hover {
+  background-color: #b8b8b8;
+}
+
 .dragging {
   background-color: #f3f3f3;
 }
@@ -432,6 +436,10 @@ nav a:last-of-type {
   font-size: 15px !important;
   min-height: 200px !important;
   padding: 10px !important;
+}
+
+.ql-editor[contenteditable="false"] {
+  background-color: #f9f9f9;
 }
 
 .ql-editor:focus {

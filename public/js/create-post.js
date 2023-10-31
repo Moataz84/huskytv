@@ -83,23 +83,30 @@ function post(e) {
 
   const msg = document.querySelector(".msg")
   const input = document.querySelector("#upload-image")
-  input.disabled = true
+  const textarea = document.querySelector(".ql-editor")
+  const button = document.querySelector(".post-form > button")
+  input.disabled = button.disabled = true
+  textarea.contentEditable = false
 
   const files = input.files
   if (!files.length || !getLength()) {
-    input.disabled = false
+    input.disabled = button.disabled = false
+    textarea.contentEditable = true
     return msg.innerText = "Both fields are required"
   }
 
   if (getLength() >= 250) {
-    input.disabled = false
+    input.disabled = button.disabled = false
+    textarea.contentEditable = true
     return msg.innerText = "Caption can not exceed 250 characters"
   }
   
+  msg.style.color = "#000"
+  msg.innerText = "Creating post, please wait"
+
   const photo = document.querySelector(".post-preview img").src
   const caption = document.querySelector(".ql-editor").innerHTML
   socket.emit("post-create", {photo, caption})
-  input.disabled = false
   socket.on("post-id", postId => window.location.href = `/posts/${postId}`)
 }
 
@@ -108,19 +115,27 @@ function editPost(e) {
 
   const msg = document.querySelector(".msg")
   const input = document.querySelector("#upload-image")
-  input.disabled = true
+  const textarea = document.querySelector(".ql-editor")
+  const button = document.querySelector(".post-form > button")
+  input.disabled = button.disabled = true
+  textarea.contentEditable = false
 
   const files = input.files
   if (!files.length || !getLength()) {
-    input.disabled = false
+    input.disabled = button.disabled = false
+    textarea.contentEditable = true
     return msg.innerText = "Both fields are required"
   }
 
   if (getLength() >= 250) {
-    input.disabled = false
+    input.disabled = button.disabled = false
+    textarea.contentEditable = true
     return msg.innerText = "Caption can not exceed 250 characters"
   }
 
+  msg.style.color = "#000"
+  msg.innerText = "Saving post, please wait"
+  
   const postId = window.location.pathname.replace("/posts/", "").replace("/edit", "")
   const img = document.querySelector(".post-preview img")
   const photo = img.src
