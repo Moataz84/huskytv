@@ -15,6 +15,7 @@
         <div class="dashboard-posts">
           <% for (post of posts) { %>
             <div class="dashboard-post">
+              <img src="<%= post.photo %>">
               <a href="/posts/<%= post.postId %>" target="_blank">
                 <h3>Post: <%= post.postId %></h3>
               </a>

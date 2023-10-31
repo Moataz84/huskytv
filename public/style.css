@@ -254,6 +254,7 @@ nav a:last-of-type {
 
 .qr-code img {
   width: 100%;
+  box-shadow: 0 0 13px 2px #4284b3;
 }
 
 .qr-codes-container h3 {
@@ -479,14 +480,20 @@ nav a:last-of-type {
   border-bottom: 1px solid #ccc;
   padding: 15px;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
 }
 
 .dashboard-post:last-of-type {
   border: none;
 }
 
+.dashboard-post img {
+  width: 50px;
+}
+
 .dashboard-post > a {
+  flex: 1;
   color: #1a73e8;
   text-decoration: none;
 }
