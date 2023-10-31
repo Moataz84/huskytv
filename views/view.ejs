@@ -67,6 +67,13 @@
   <script>
     getPost()
     document.querySelector(".ql-editor").contentEditable = false
+    const observer = new ResizeObserver(() => {
+      const dateContainer = document.querySelector(".date-container").getBoundingClientRect().height
+      const qrCodes = document.querySelector(".qr-codes-container").getBoundingClientRect().height
+      document.querySelector(".announcements-container").style.height = 
+      `calc(100vh - ${dateContainer + qrCodes + 42}px)`
+    })
+    observer.observe(document.querySelector("body"))
   </script>
 </body>
 </html>
