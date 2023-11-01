@@ -27,11 +27,12 @@ router.post("/logout", (req, res) => {
 })
 
 router.post("/change-password", async (req, res) => {
-  const user = await Users.findOne({username: "admin"})
+  const id = jwt.verify(req.cookies["JWT-Token"], process.env.ACCESS_TOKEN_SECRET).id
+  const user = await Users.findOne({_id: id})
   const result = await bcrypt.compare(req.body.currentPassword, user.password)
   if (!result) return res.send({msg: "The password you enetered is incorrect"})
   const password = await bcrypt.hash(req.body.newPassword, 10)
-  await Users.findOneAndUpdate({username: "admin"}, {$set: {password}})
+  await Users.findOneAndUpdate({_id: id}, {$set: {password}})
   res.send({msg: "success"})
 })
 
