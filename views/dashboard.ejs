@@ -19,7 +19,7 @@
               <a href="/posts/<%= post.postId %>" target="_blank">
                 <h3>Post: <%= post.postId %></h3>
               </a>
-              <p>Expiry: <%= new Date(post.timestamp).toLocaleString() %></p>
+              <p>Expiry: <%= new Date(post.createdAt).toLocaleString() %></p>
               <div class="post-actions">
                 <% if (!post.approved) { %>
                   <button class="action" data-post-id="<%= post.postId %>" onclick="approvePost(event)">Approve</button>

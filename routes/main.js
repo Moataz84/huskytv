@@ -21,7 +21,7 @@ router.get("/dashboard", validateJWT, async (req, res) => {
 	const data = await Posts.find()
 	const posts = data.map(post => ({
 		...post._doc,
-		timestamp: new Date(new Date(post._doc.timestamp).getTime() + 604800000).getTime()
+		createdAt: new Date(new Date(post._doc.createdAt).getTime() + 604800000).getTime()
 	}))
 	res.render("dashboard", {loggedIn: checkLoggedIn(req), posts})
 })
