@@ -18,7 +18,11 @@ router.get("/login", validateJWT, (req, res) => {
 })
 
 router.get("/dashboard", validateJWT, async (req, res) => {
-	const posts = await Posts.find()
+	const data = await Posts.find()
+	const posts = data.map(post => ({
+		...post._doc,
+		timestamp: new Date(new Date(post._doc.timestamp).getTime() + 604800000).getTime()
+	}))
 	res.render("dashboard", {loggedIn: checkLoggedIn(req), posts})
 })
 
