@@ -9,7 +9,7 @@ const schema = new mongoose.Schema({
   timestamp: {
     type: Date,
     default: Date.now,
-    expires: 604800
+    expires: "10080m"
   }
 })
   
