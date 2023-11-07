@@ -44,7 +44,7 @@ function confirmDelete(e) {
   const confirmed = confirm("Are you sure you want to delete this post? This action is irreversible.")
   if (!confirmed) return
   socket.emit("post-delete", postId)
-  window.location.reload()
+  socket.on("deleted", () => window.location.reload())
 }
 
 function approvePost(e) {
@@ -52,5 +52,5 @@ function approvePost(e) {
   const confirmed = confirm("Are you sure you want to approve this post?")
   if (!confirmed) return
   socket.emit("post-approve", postId)
-  window.location.reload()
+  socket.on("approved", () => window.location.reload())
 }
