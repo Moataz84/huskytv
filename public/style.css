@@ -123,6 +123,7 @@ nav a:last-of-type {
 .caption .ql-editor {
   min-height: auto !important;
   border: none !important;
+  overflow: hidden !important;
 }
 
 .caption .ql-editor h1 {

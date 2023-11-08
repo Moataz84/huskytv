@@ -1,3 +1,5 @@
+let width = document.querySelector(".slider-container").getBoundingClientRect().width
+
 const slider = document.querySelector(".slider")
 const caption = document.querySelector(".caption")
 
@@ -8,15 +10,16 @@ caption.innerHTML = posts[0].caption
 slider.insertAdjacentHTML(
   "beforeend",
   `<div class="slide">
-    <img src="${posts[0].photo}">
+    <img src="${posts[0].photo}?tr=w-${width}">
   </div>
   <div class="slide">
-    <img src="${posts[1].photo}">
+    <img src="${posts[1].photo}?tr=w-${width}">
   </div>`
 )
 
 setInterval(() => {
-  const current = slider.children[1].querySelector("img").getAttribute("src")
+  const urlParts = new URL(slider.children[1].querySelector("img").getAttribute("src"))
+  const current = urlParts.href.replace(urlParts.search, "")
   const next = posts.findIndex(post => post.photo === current) + 1
   const nextImage = posts[next] != undefined? posts[next].photo : posts[0].photo
   const nextCaption = posts[next - 1] != undefined? posts[next - 1].caption : posts[0].caption
@@ -29,7 +32,7 @@ setInterval(() => {
     slider.insertAdjacentHTML(
       "beforeend", 
       `<div class="slide">
-        <img src="${nextImage}">
+        <img src="${nextImage}?tr=w-${width}">
       </div>`
       )
     clearTimeout(timeout)
@@ -53,3 +56,13 @@ socket.on("post-updated", data => {
   post.photo = data.photo
   post.caption = data.caption
 })
+
+const observer = new ResizeObserver(() => {
+  width = document.querySelector(".slider-container").getBoundingClientRect().width
+  const dateContainer = document.querySelector(".date-container").getBoundingClientRect().height
+  const qrCodes = document.querySelector(".qr-codes-container").getBoundingClientRect().height
+  document.querySelector(".announcements-container").style.height = 
+  `calc(100vh - ${dateContainer + qrCodes + 42}px)`
+})
+
+observer.observe(document.querySelector("body"))

@@ -19,7 +19,7 @@ async function getAnnouncements() {
     data.push({title, content})
   })
   
-  return data.filter((v, i) => i > 0).map((item, index) => ({id: index, ...item}))
+  return data.filter(e => e.content?.length).map((item, index) => ({id: index, ...item}))
 }
 
 module.exports = getAnnouncements

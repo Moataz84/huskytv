@@ -67,13 +67,12 @@ io.on("connection", socket => {
   })
 
   socket.on("post-approve", async postId => {
-    let posts = await Posts.find()
-    await Posts.findOneAndUpdate({postId}, {$set: {approved: true}}, {new: true})
+    let [posts] = await Promise.all([Posts.find(), Posts.findOneAndUpdate({postId}, {$set: {approved: true}})])
     posts = posts.map(post => {
       if (post.postId === postId) post.approved = true
       return post
     }).filter(post => post.approved)
-    socket.emit("approved", null)
+    socket.emit("approved")
     io.emit("post-approved", posts)
   })
 
@@ -99,7 +98,7 @@ io.on("connection", socket => {
   socket.on("post-delete", async postId => {
     const post = await Posts.findOneAndDelete({postId})
     imagekit.deleteFile(post.photoId)
-    socket.emit("deleted", null)
+    socket.emit("deleted")
     io.emit("post-deleted", postId)
   })
 })
