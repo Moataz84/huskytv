@@ -11,7 +11,7 @@
     <%- include("partials/menu.ejs") %>
     <div class="content">
 
-      <form class="change-password">
+      <form class="settings-form">
         <h2>Change Password</h2>
         <div class="input-container">
           <label>Current Password</label>
@@ -31,6 +31,20 @@
         </div>
         <button onclick="changePassword(event)">Save</button>
         <p class="msg"></p>
+      </form>
+
+      <form class="settings-form">
+        <h2>Choose School</h2>
+        <select>
+          <% for (school of schools) { 
+            if (school.selected) { %>
+            <option value="<%= school.id %>" selected><%= school.name %></option>
+            <% } else { %>
+              <option value="<%= school.id %>"><%= school.name %></option>
+            <% } %>
+          <% } %>
+        </select>
+        <button onclick="changeSchool(event)">Save</button>
       </form>
     </div>
   </div>

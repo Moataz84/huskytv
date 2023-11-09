@@ -51,3 +51,16 @@ async function changePassword(e) {
   }
   msg.innerText = data.msg
 }
+
+async function changeSchool(e) {
+  e.preventDefault()
+  const selected = document.querySelector("select").value
+  await fetch("/api/change-school", {
+    method: "POST",
+    body: JSON.stringify({selected}),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  alert("School updated")
+}

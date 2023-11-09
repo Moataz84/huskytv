@@ -314,7 +314,7 @@ nav a:last-of-type {
   align-self: center;
 }
 
-.login .input-container, .change-password .input-container {
+.login .input-container, .settings-form .input-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -348,7 +348,7 @@ nav a:last-of-type {
   fill: #808080;
 }
 
-.login > button, .change-password > button, .post-form > button {
+.login > button, .settings-form > button, .post-form > button {
   width: fit-content;
   border: 0;
   border-radius: 3px;
@@ -361,11 +361,11 @@ nav a:last-of-type {
   align-self: flex-end;
 }
 
-.login > button:hover, .change-password > button:hover, .post-form > button:hover {
+.login > button:hover, .settings-form > button:hover, .post-form > button:hover {
   background-color: #075cca;
 }
 
-.login .msg, .post-form .msg, .change-password .msg {
+.login .msg, .post-form .msg, .settings-form .msg {
   font-size: 14px;
   color: #8c0c0c;
   height: 22px;
@@ -530,7 +530,7 @@ nav a:last-of-type {
 }
 
 /* Settings Page */
-.change-password {
+.settings-form {
   width: 60%;
   max-width: 700px;
   border-radius: 8px;
@@ -542,21 +542,27 @@ nav a:last-of-type {
   overflow: hidden;
 }
 
-.change-password input:not([type="checkbox"]) {
+.settings-form input:not([type="checkbox"]) {
   padding: 10px 7px;
   border: none;
   outline: 1px solid #ccc;
   font-size: 16px;
 }
 
-.change-password input[type="checkbox"] {
+.settings-form input[type="checkbox"] {
   scale: 1.5;
   cursor: pointer;
 }
 
-.change-password > div:last-of-type {
+.settings-form > div:last-of-type {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
+}
+
+select {
+  padding: 10px 5px;
+  outline: none;
+  border: 1px solid #ccc;
 }
