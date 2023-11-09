@@ -9,11 +9,11 @@
 </head>
 <body>
   <div class="container">
-    <div class="layout">
+    <div class="layout" data-color="<%= selected.color %>">
       
       <div class="photo-slider">
         <div class="banner">
-          <img src="imgs/logo.png">
+          <img src="imgs/schools/<%= selected.id %>.png">
           <div class="greeting"></div>
         </div>
 
@@ -67,6 +67,8 @@
   <script>
     getPost()
     document.querySelector(".ql-editor").contentEditable = false
+    const color = document.querySelector(".layout").getAttribute("data-color")
+    document.querySelector(":root").style.setProperty("--school-color", `#${color}`)
   </script>
 </body>
 </html>

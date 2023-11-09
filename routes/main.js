@@ -1,5 +1,7 @@
 const express = require("express")
 const router = express.Router()
+const fs = require("fs")
+const path = require("path")
 const Posts = require("../Models/Posts")
 const { validateJWT, checkLoggedIn } = require("../utils/middleware")
 const getAnnouncements = require("../utils/announcements")
@@ -9,8 +11,16 @@ router.get("/", validateJWT, (req, res) => {
 })
 
 router.get("/view", validateJWT, async (req, res) => {
+  const schools = JSON.parse(fs.readFileSync(path.join(__dirname, "../schools.json"), "utf-8"))
+  let selected = schools.find(school => school.selected)
+  if (!selected) selected = schools.find(school => school.id === "husky")
 	const [posts, announcements] = await Promise.all([Posts.find({approved: true}), getAnnouncements()])
-	res.render("view", {posts: JSON.stringify(posts), announcements: JSON.stringify(announcements), loggedIn: checkLoggedIn(req)})
+	res.render("view", {
+    selected,
+    posts: JSON.stringify(posts), 
+    announcements: JSON.stringify(announcements), 
+    loggedIn: checkLoggedIn(req)
+  })
 })
 
 router.get("/login", validateJWT, (req, res) => {

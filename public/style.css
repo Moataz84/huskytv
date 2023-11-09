@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
+:root {
+  --school-color: #4284b3;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -55,7 +59,7 @@ nav a:last-of-type {
 .photo-slider {
   background-color: #2A2D34;
   position: relative;
-  border-right: 5px solid #4284b3;
+  border-right: 5px solid var(--school-color);
 }
 
 .banner {
@@ -115,7 +119,7 @@ nav a:last-of-type {
   right: 20px;
   background-color: #22252c;
   border-radius: 10px;
-  box-shadow: 0 0 13px 2px #4284b3;
+  box-shadow: 0 0 13px 2px var(--school-color);
   color: #fff;
   border: none !important;
 }
@@ -157,13 +161,13 @@ nav a:last-of-type {
 .side-pannel .date-bubble {
   align-self: normal;
   border-radius: 10px;
-  background-color: #4284b3;
+  background-color: var(--school-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 7px;
-  box-shadow: 0 0 13px 2px #4284b3;
+  box-shadow: 0 0 13px 2px var(--school-color);
 }
 
 .side-pannel .date {
@@ -255,7 +259,7 @@ nav a:last-of-type {
 
 .qr-code img {
   width: 100%;
-  box-shadow: 0 0 13px 2px #4284b3;
+  box-shadow: 0 0 13px 2px var(--school-color);
 }
 
 .qr-codes-container h3 {
