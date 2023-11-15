@@ -4,6 +4,7 @@ const slider = document.querySelector(".slider")
 const caption = document.querySelector(".caption")
 
 let posts = JSON.parse(slider.getAttribute("data-posts"))
+console.log(posts);
 slider.removeAttribute("data-posts")
 
 caption.innerHTML = posts[0].caption
@@ -18,6 +19,7 @@ slider.insertAdjacentHTML(
 )
 
 setInterval(() => {
+  posts = posts.filter(post => (new Date(post.createdAt).getTime() + 604800000) > new Date().getTime())
   const urlParts = new URL(slider.children[1].querySelector("img").getAttribute("src"))
   const current = urlParts.href.replace(urlParts.search, "")
   const next = posts.findIndex(post => post.photo === current) + 1
