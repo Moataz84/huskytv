@@ -4,7 +4,6 @@ const slider = document.querySelector(".slider")
 const caption = document.querySelector(".caption")
 
 let posts = JSON.parse(slider.getAttribute("data-posts"))
-console.log(posts);
 slider.removeAttribute("data-posts")
 
 caption.innerHTML = posts[0].caption
