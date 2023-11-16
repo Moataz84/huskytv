@@ -13,7 +13,7 @@ slider.insertAdjacentHTML(
     <img src="${posts[0].photo}?tr=w-${width}">
   </div>
   <div class="slide">
-    <img src="${posts[1].photo}?tr=w-${width}">
+    <img src="${posts.length < 2? posts[0].photo : posts[1].photo}?tr=w-${width}">
   </div>`
 )
 
