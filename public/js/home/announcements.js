@@ -3,7 +3,7 @@ const slideNumber = document.querySelector(".slide-number")
 
 let announcements = JSON.parse(announcementsSlider.getAttribute("data-announcements"))
 
-announcementsSlider.removeAttribute("data-posts")
+announcementsSlider.removeAttribute("data-announcements")
 slideNumber.innerText = `1/${announcements.length}`
 announcementsSlider.insertAdjacentHTML(
   "beforeend",
@@ -11,9 +11,9 @@ announcementsSlider.insertAdjacentHTML(
     <h2>${announcements[0].title}</h2>
     <p>${announcements[0].content}</p>
   </div>
-  <div class="announcement" data-id="${announcements[1].id}">
-    <h2>${announcements[1].title}</h2>
-    <p>${announcements[1].content}</p>
+  <div class="announcement" data-id="${announcements.length < 2? announcements[0].id : announcements[1].id}">
+    <h2>${announcements.length < 2? announcements[0].title : announcements[1].title}</h2>
+    <p>${announcements.length < 2? announcements[0].content : announcements[1].content}</p>
   </div>`
 )
 
