@@ -19,7 +19,7 @@ const io = require("socket.io")(server, {
   maxHttpBufferSize: 1e11
 })
 
-const port = 550
+const port = 5550
 const URI = process.env.DB_URI
 
 app.set("view engine", "ejs")
