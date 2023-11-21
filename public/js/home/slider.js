@@ -58,12 +58,16 @@ socket.on("post-updated", data => {
   post.caption = data.caption
 })
 
-const observer = new ResizeObserver(() => {
-  width = document.querySelector(".slider-container").getBoundingClientRect().width
+function setHeight() {
   const dateContainer = document.querySelector(".date-container").getBoundingClientRect().height
   const qrCodes = document.querySelector(".qr-codes-container").getBoundingClientRect().height
   document.querySelector(".announcements-container").style.height = 
   `calc(100vh - ${dateContainer + qrCodes + 42}px)`
+}
+
+const observer = new ResizeObserver(() => {
+  width = document.querySelector(".slider-container").getBoundingClientRect().width
+  setHeight()
 })
 
 observer.observe(document.querySelector("body"))

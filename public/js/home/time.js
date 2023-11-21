@@ -11,14 +11,15 @@ function updateDate(unix) {
 
   document.querySelector(".time > span").innerText = time[0]
   document.querySelector(".time > span:last-of-type").innerText = time[1]
+
+  setHeight()
 }
 
 function setTimeOfDay(unix) {
   const d = new Date(unix)
   const hours = d.getHours()
   if (hours >= 12) {
-    document.querySelector(".greeting").innerText = "Good Afternoon!"
-    return
+    return document.querySelector(".greeting").innerText = "Good Afternoon!"
   } 
   document.querySelector(".greeting").innerText = "Good Morning!"
 }
