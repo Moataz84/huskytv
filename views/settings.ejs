@@ -37,7 +37,7 @@
         <h2>Choose School</h2>
         <select>
           <% for (school of schools) { 
-            if (school.selected) { %>
+            if (school.id === selected.id) { %>
             <option value="<%= school.id %>" selected><%= school.name %></option>
             <% } else { %>
               <option value="<%= school.id %>"><%= school.name %></option>
@@ -48,6 +48,7 @@
       </form>
     </div>
   </div>
+  <script src="/socket.io/socket.io.js"></script>
   <script src="js/main.js"></script>
   <script src="js/settings.js"></script>
 </body>

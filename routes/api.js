@@ -47,8 +47,8 @@ router.post("/change-school", (req, res) => {
   const file = path.join(__dirname, "../schools.json")
   const schools = JSON.parse(fs.readFileSync(file, "utf-8"))
   const newArray = schools.map(school => {
-    if (school.id === req.body.selected) return {...school, selected: true}
-    return school
+    if (school.id === parseInt(req.body.selected)) return {...school, selected: true}
+    return {...school, selected: false}
   })
   fs.writeFileSync(file, JSON.stringify([...newArray], null, 2))
   res.send("done")
