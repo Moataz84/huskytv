@@ -2,85 +2,85 @@
   {
     "id": 1,
     "name": "Ancaster High Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   },
   {
     "id": 2,
     "name": "Bernie Custis Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   },
   {
     "id": 3,
     "name": "Dundas Valley Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   },
   {
     "id": 4,
     "name": "Glendale Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   },
   {
     "id": 5,
     "name": "Nora Frances Henderson Secondary",
-    "colour": "4284b3",
-    "selected": true
+    "color": "#4284b3",
+    "selected": false
   },
   {
     "id": 6,
     "name": "Orchard Park Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   },
   {
     "id": 7,
     "name": "Saltfleet Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   },
   {
     "id": 8,
     "name": "Sherwood Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   },
   {
     "id": 9,
     "name": "Sir Allan MacNab Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   },
   {
     "id": 10,
     "name": "Sir John A Macdonald Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   },
   {
     "id": 11,
     "name": "Sir Winston Churchill Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   },
   {
     "id": 12,
     "name": "Waterdown Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   },
   {
     "id": 13,
     "name": "Westdale Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   },
   {
     "id": 14,
     "name": "Westmount Secondary",
-    "colour": "4284b3",
+    "color": "#4284b3",
     "selected": false
   }
 ]
