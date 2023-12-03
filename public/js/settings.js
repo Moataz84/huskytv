@@ -1,5 +1,5 @@
-function showPassword() {
-  const inputs = document.querySelectorAll("input:not([type=checkbox])")
+function showPassword(e) {
+  const inputs = e.target.parentElement.parentElement.querySelectorAll(".password")
   if (inputs[0].type === "text") {
     inputs.forEach(input => input.type = "password")
     return
@@ -8,12 +8,12 @@ function showPassword() {
 }
 
 function focusInput(e) {
-  document.querySelector(".msg").innerText = ""
+  e.target.parentElement.parentElement.querySelector(".msg").innerText = ""
   return e.target.style.outline = "1px solid #1a73e8"
 }
 
 function blurInput(e) {
-  document.querySelector(".msg").innerText = ""
+  e.target.parentElement.parentElement.querySelector(".msg").innerText = ""
   return e.target.style.outline = "1px solid #ccc"
 }
 
@@ -47,7 +47,7 @@ async function changePassword(e) {
   const data = await res.json()
 
   if (data.msg === "success") {
-    return window.location.href = "/"
+    return window.location.reload()
   }
   msg.innerText = data.msg
 }
@@ -62,5 +62,41 @@ async function changeSchool(e) {
       "Content-Type": "application/json"
     }
   })
+  
   alert("School updated")
+}
+
+async function createUser(e) {
+  e.preventDefault()
+  const inputs = e.target.parentElement.querySelectorAll("input:not([type=checkbox])")
+  const username = inputs[0].value
+  const password = inputs[1].value
+  const repeatPassword = inputs[2].value
+  const msg = e.target.parentElement.querySelector(".msg")
+
+  if (!username || !password || !repeatPassword) {
+    return msg.innerText = "All fields are required"
+  }
+
+  if (password.length < 8 || password.includes(" ")) {
+    return msg.innerText = "Password must be atleast 8 characters and can not contain spaces"
+  }
+
+  if (password !== repeatPassword) {
+    return msg.innerText = "Both passwords must match"
+  }
+
+  const res = await fetch("/api/create-user", {
+    method: "POST",
+    body: JSON.stringify({username, password}),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  const data = await res.json()
+
+  if (data.msg === "success") {
+    return window.location.reload()
+  }
+  msg.innerText = data.msg
 }

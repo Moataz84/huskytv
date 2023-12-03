@@ -15,29 +15,51 @@
         <h2>Change Password</h2>
         <div class="input-container">
           <label>Current Password</label>
-          <input type="password" placeholder="Current Password" onfocus="focusInput(event)" onblur="blurInput(event)">
+          <input type="password" class="password" placeholder="Current Password" onfocus="focusInput(event)" onblur="blurInput(event)">
         </div>
         <div class="input-container">
           <label>New Password</label>
-          <input type="password" placeholder="New Password" onfocus="focusInput(event)" onblur="blurInput(event)">
+          <input type="password" class="password" placeholder="New Password" onfocus="focusInput(event)" onblur="blurInput(event)">
         </div>
         <div class="input-container">
           <label>Repeat Password</label>
-          <input type="password" placeholder="Repeat Password" onfocus="focusInput(event)" onblur="blurInput(event)">
+          <input type="password" class="password" placeholder="Repeat Password" onfocus="focusInput(event)" onblur="blurInput(event)">
         </div>
         <div>
           <label>Show Passwords</label>
-          <input type="checkbox" onchange="showPassword()">
+          <input type="checkbox" onchange="showPassword(event)">
         </div>
         <button onclick="changePassword(event)">Save</button>
         <p class="msg"></p>
       </form>
 
       <form class="settings-form">
+        <h2>Create User</h2>
+        <div class="input-container">
+          <label>Username</label>
+          <input type="text" placeholder="Username" onfocus="focusInput(event)" onblur="blurInput(event)">
+        </div>
+        <div class="input-container">
+          <label>Password</label>
+          <input type="password" class="password" placeholder="Password" onfocus="focusInput(event)" onblur="blurInput(event)">
+        </div>
+        <div class="input-container">
+          <label>Repeat Password</label>
+          <input type="password" class="password" placeholder="Repeat Password" onfocus="focusInput(event)" onblur="blurInput(event)">
+        </div>
+        <div>
+          <label>Show Passwords</label>
+          <input type="checkbox" onchange="showPassword(event)">
+        </div>
+        <button onclick="createUser(event)">Create</button>
+        <p class="msg"></p>
+      </form>
+      
+      <form class="settings-form">
         <h2>Choose School</h2>
         <select>
-          <% for (school of schools) { 
-            if (school.id === selected.id) { %>
+          <% for (school of schools) { %>  
+            <% if (school.id === selected.id) { %>
             <option value="<%= school.id %>" selected><%= school.name %></option>
             <% } else { %>
               <option value="<%= school.id %>"><%= school.name %></option>

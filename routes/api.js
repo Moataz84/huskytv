@@ -54,4 +54,15 @@ router.post("/change-school", (req, res) => {
   res.send("done")
 })
 
+router.post("/create-user", async (req, res) => {
+  const { username, password } = req.body
+  const userCheck = await Users.findOne({username})
+  if (userCheck) {
+    return res.send({msg: "User already exists"})
+  }
+  const hashedPassword = await bcrypt.hash(password, 10)
+  await Users({username, password: hashedPassword}).save()
+  res.send({msg: "success"})
+})
+
 module.exports = router

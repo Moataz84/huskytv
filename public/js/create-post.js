@@ -85,6 +85,7 @@ function post(e) {
   const input = document.querySelector("#upload-image")
   const textarea = document.querySelector(".ql-editor")
   const button = document.querySelector(".post-form > button")
+  const expire = document.querySelector(".check input").checked
   input.disabled = button.disabled = true
   textarea.contentEditable = false
 
@@ -106,7 +107,7 @@ function post(e) {
 
   const photo = document.querySelector(".post-preview img").src
   const caption = document.querySelector(".ql-editor").innerHTML
-  socket.emit("post-create", {photo, caption})
+  socket.emit("post-create", {photo, caption, expire})
   socket.on("post-id", postId => window.location.href = `/posts/${postId}`)
 }
 

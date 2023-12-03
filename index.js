@@ -36,7 +36,7 @@ app.use("/", mainRoutes)
 io.on("connection", socket => {
   socket.on("post-create", async data => {
     const postId = uuid.v4().replace(/-/g, "")
-    const { photo, caption } = data
+    const { photo, caption, expire } = data
 
     const { pictureUrl, photoId } = await new Promise(resolve => {
       imagekit.upload({
@@ -59,7 +59,8 @@ io.on("connection", socket => {
       photo: pictureUrl,
       photoId,
       caption,
-      approved: loggedIn
+      approved: loggedIn,
+      expire
     }).save()
 
     if (loggedIn) io.emit("post-created", post)

@@ -395,7 +395,7 @@ nav a:last-of-type {
   border-radius: 3px;
 }
 
-.post-form > input {
+.post-form > input[type="file"] {
   opacity: 0;
   position: absolute;
   z-index: -1;
@@ -454,6 +454,15 @@ nav a:last-of-type {
 .remaining {
   font-size: 14px;
   font-weight: 600;
+}
+
+.check {
+  display: flex;
+  gap: 10px;
+}
+
+.check input {
+  cursor: pointer;
 }
 
 .post-preview {

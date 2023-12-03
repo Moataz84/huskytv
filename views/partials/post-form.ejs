@@ -13,6 +13,12 @@
       <div class="editor"></div>
     </div>
     <p class="remaining">250 Characters Remaining</p>
+    <% if (!edit) { %>
+      <div class="check">
+        <p>Expire</p>
+        <input type="checkbox" checked onchange="clearInput(event)">
+      </div>
+    <% } %>
     <% if (edit) { %>
       <button onclick="editPost(event)">Save</button>
     <% } else { %>
