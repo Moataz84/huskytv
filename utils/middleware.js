@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken")
+const url = require("url")
 if (process.env.NODE_ENV !== "production") require("dotenv").config()
 
 const protected = ["/dashboard", "/settings", "/:id/edit"]
@@ -25,4 +26,14 @@ function checkLoggedIn(req) {
   }
 }
 
-module.exports = { validateJWT, checkLoggedIn }
+function checkOrigin(req, res, next) {
+  try {
+    const origin = new url.URL(req.headers.origin).host
+    if (origin !== req.headers.host) return res.sendStatus(403)
+    next()
+  } catch {
+    res.sendStatus(403)
+  }
+}
+
+module.exports = { validateJWT, checkLoggedIn, checkOrigin }

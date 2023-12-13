@@ -6,8 +6,9 @@ const fs = require("fs")
 const path = require("path")
 const Users = require("../Models/Users")
 const getAnnouncements = require("../utils/announcements")
+const { checkOrigin } = require("../utils/middleware")
 
-router.post("/login", async (req, res) => {
+router.post("/login", checkOrigin, async (req, res) => {
   const user = await Users.findOne({username: req.body.username})
   if (!user) {
     return res.send({msg: "User does not exist"})
@@ -23,12 +24,12 @@ router.post("/login", async (req, res) => {
   res.send({msg: "success"})
 })
 
-router.post("/logout", (req, res) => {
+router.post("/logout", checkOrigin, (req, res) => {
   res.clearCookie("JWT-Token")
   res.end()
 })
 
-router.post("/change-password", async (req, res) => {
+router.post("/change-password", checkOrigin, async (req, res) => {
   const id = jwt.verify(req.cookies["JWT-Token"], process.env.ACCESS_TOKEN_SECRET).id
   const user = await Users.findOne({_id: id})
   const result = await bcrypt.compare(req.body.currentPassword, user.password)
@@ -38,12 +39,12 @@ router.post("/change-password", async (req, res) => {
   res.send({msg: "success"})
 })
 
-router.post("/announcements", async (req, res) => {
+router.post("/announcements", checkOrigin, async (req, res) => {
 	const announcements = await getAnnouncements()
   res.send({announcements})
 })
 
-router.post("/change-school", (req, res) => {
+router.post("/change-school", checkOrigin, (req, res) => {
   const file = path.join(__dirname, "../schools.json")
   const schools = JSON.parse(fs.readFileSync(file, "utf-8"))
   const newArray = schools.map(school => {
@@ -54,7 +55,7 @@ router.post("/change-school", (req, res) => {
   res.send("done")
 })
 
-router.post("/create-user", async (req, res) => {
+router.post("/create-user", checkOrigin, async (req, res) => {
   const { username, password } = req.body
   const userCheck = await Users.findOne({username})
   if (userCheck) {
