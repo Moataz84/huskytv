@@ -12,8 +12,12 @@ router.get("/", validateJWT, (req, res) => {
 })
 
 router.get("/view", validateJWT, async (req, res) => {
-	const [posts, announcements] = await Promise.all([Posts.find({approved: true}), getAnnouncements()])
-	res.render("view", {
+	const [posts, announcements] = await Promise.all([
+    Posts.find({approved: true, $or: [{createdAt: {$gt: (new Date().getTime() - 604800000)}}, {expire: false}]}),
+    getAnnouncements()
+  ])
+
+  res.render("view", {
     selected: getSelected(),
     posts: JSON.stringify(posts), 
     announcements: JSON.stringify(announcements), 
@@ -26,7 +30,7 @@ router.get("/login", validateJWT, (req, res) => {
 })
 
 router.get("/dashboard", validateJWT, async (req, res) => {
-	const data = await Posts.find()
+	const data = await Posts.find({$or: [{createdAt: {$gt: (new Date().getTime() - 604800000)}}, {expire: false}]})
 	const posts = data.map(post => ({
 		...post._doc,
 		createdAt: new Date(new Date(post._doc.createdAt).getTime() + 604800000).getTime()

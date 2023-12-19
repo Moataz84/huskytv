@@ -60,7 +60,8 @@ io.on("connection", socket => {
       photoId,
       caption,
       approved: loggedIn,
-      expire
+      expire,
+      createdAt: new Date().getTime()
     }).save()
 
     if (loggedIn) io.emit("post-created", post)

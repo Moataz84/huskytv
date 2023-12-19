@@ -6,12 +6,9 @@ const schema = new mongoose.Schema({
   photoId: String,
   caption: String,
   approved: Boolean,
-  expire: {
-    type: Boolean,
-    default: true
-  }
-}, {timestamps: true})
-schema.index({createdAt: 1}, {expireAfterSeconds: 604800, partialFilterExpression: {expire: true}})
+  expire: Boolean,
+  createdAt: Number
+})
 
 const Posts = mongoose.model("posts", schema)
 module.exports = Posts
