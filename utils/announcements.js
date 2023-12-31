@@ -18,8 +18,12 @@ async function getAnnouncements() {
     if (!content?.length) content = $(item).find("h1").html()
     data.push({title, content})
   })
-  
-  return data.filter(e => e.content?.length).map((item, index) => ({id: index, ...item}))
+
+  const announcements = data.filter(e => e.content?.length).map((item, index) => ({id: index, ...item}))
+  if (!announcements.length) {
+    announcements.push({id: 0, title: "No Announcements", content: "<p>There are currently no new announcements available.</p"})
+  }
+  return announcements
 }
 
 module.exports = getAnnouncements
