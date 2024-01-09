@@ -105,4 +105,6 @@ io.on("connection", socket => {
   })
 })
 
+app.use((req, res) => res.status(404).send("Not Found"))
+
 mongoose.connect(URI).then(() => server.listen(port, () => console.log(`http://localhost:${port}`)))
